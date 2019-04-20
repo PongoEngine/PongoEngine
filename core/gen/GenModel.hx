@@ -2,15 +2,42 @@ package gen;
 
 class GenModel 
 {
-	public var windows :Array<WindowContent>;
+	public var columnLeft :Column;
+	public var columnRight :Column;
+
+	public var windowsLeft :Array<WindowContent>;
+	public var windowsRight :Array<WindowContent>;
 
 	public function new():Void 
 	{
-		this.windows = [
-			new WindowContent("Hello"),
-			new WindowContent("World"),
-			new WindowContent("Cheese")
+		this.columnLeft = new Column(true);
+		this.columnRight = new Column(false);
+
+		this.windowsLeft = [
+			new WindowContent("wl1"),
+			new WindowContent("wl2"),
+			new WindowContent("wl3")
 		];
+
+		this.windowsRight = [
+			new WindowContent("wr1"),
+			new WindowContent("wr2"),
+			new WindowContent("wr3"),
+			new WindowContent("wr4"),
+			new WindowContent("wr5")
+		];
+	}
+}
+
+class Column
+{
+	public var isOpen :Bool;
+	public var isLeft :Bool;
+
+	public function new(isLeft :Bool):Void 
+	{
+		this.isLeft = isLeft;
+		this.isOpen = true;
 	}
 }
 

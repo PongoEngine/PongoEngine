@@ -7,10 +7,10 @@ class GenUpdate {
 		switch msg {
 			case NoOp:
 				trace("noOp");
-			case Ham(str):
-				trace(str);
 			case ToggleWindow(window):
 				window.isOpen = !window.isOpen;
+			case ToggleColumn(column):
+				column.isOpen = !column.isOpen;
 		}
 		return model;
 	}
@@ -18,6 +18,6 @@ class GenUpdate {
 
 enum GenMsg {
 	NoOp;
-	Ham(str:String);
 	ToggleWindow(window :WindowContent);
+	ToggleColumn(column :Column);
 }

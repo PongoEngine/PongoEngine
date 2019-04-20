@@ -10,16 +10,12 @@ class GenView {
 	public static function view(arch:Architecture<GenModel, GenMsg>, model:GenModel):VirtualNode {
 		return arch.div([CLASS("full-screen")], [
 			arch.div([CLASS("nav-bar border-bottom")], [
-				arch.h1([ON_CLICK(Ham("hello"))], "Game Editor")
+				arch.h1([], "Game Editor")
 			]),
-			arch.div([CLASS("main-content group")], [
-				arch.div([CLASS("game-window")], [
-				]),
-                arch.div([CLASS("column border-left")], [
-					arch.div([CLASS("flex")], [
-						for (window in model.windows) arch.collapsingWindow(window, [])
-                    ])
-				])
+			arch.div([CLASS("main-content flex-row")], [
+				arch.column(model.columnLeft ,[for (window in model.windowsLeft) arch.collapsingWindow(window, [])]),
+				arch.div([CLASS("game-window")], []),
+				arch.column(model.columnRight ,[for (window in model.windowsRight) arch.collapsingWindow(window, [])]),
 			])
 		]);
 	}

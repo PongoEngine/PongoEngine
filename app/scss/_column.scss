@@ -1,0 +1,10 @@
+$column-width: 600px;
+
+.column {
+  background-color: #222;
+  height: 100%;
+}
+.column.open {
+  width: $column-width;
+}
+

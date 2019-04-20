@@ -1,0 +1,13 @@
+.collapse {
+  background-color: #333;
+}
+.collapse.open {
+  height: 100%;
+}
+
+.collapse-title {
+  background-color: #464646;
+  color: #eee;
+  padding: 5px;
+  user-select: none;
+}
