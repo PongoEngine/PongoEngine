@@ -13,9 +13,12 @@ class GenView {
 				arch.h1([], "Game Editor")
 			]),
 			arch.div([CLASS("main-content flex-row")], [
-				arch.columnLeft(model.columnLeft ,[for (window in model.windowsLeft) arch.collapsingWindow(window, [])]),
-				arch.div([CLASS("game-window")], []),
-				arch.columnRight(model.columnRight ,[for (window in model.windowsRight) arch.collapsingWindow(window, [])]),
+				arch.column(model.columnLeft ,[for (window in model.columnLeft.windows) arch.collapsingWindow(window, [])]),
+				arch.div([CLASS("woah flex-column")], [
+					arch.div([CLASS("game-window"), HOOK_INSERT(SayHello)], []),
+					arch.bottom(model.bottom, [])
+				]),
+				arch.column(model.columnRight ,[for (window in model.columnRight.windows) arch.collapsingWindow(window, [])]),
 			])
 		]);
 	}

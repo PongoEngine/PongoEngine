@@ -1,5 +1,5 @@
 $column-width: 400px;
-$collapser-width: 20px;
+$collapser-width: 16px;
 
 .column {
   background-color: #444;
@@ -20,18 +20,19 @@ $collapser-width: 20px;
 }
 
 .column-collapser {
-  width: $collapser-width;
   text-align: center;
-  vertical-align: middle;
-  align-self: center;
   user-select: none;
   cursor: pointer;
+  background-color: #666;
+  box-sizing: border-box;
+  color: #000;
+  font-size: 32px;
 }
 
-.column-collapser {
-  height: 100%;
-  padding-top: 4px;
-  background-color: #555;
-  color: #222;
-  box-sizing: border-box;
+.column-collapser.toggler {
+  width: $collapser-width;
+}
+
+.column-collapser.barrier {
+  width: 2px;
 }

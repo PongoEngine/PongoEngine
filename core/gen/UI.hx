@@ -1,6 +1,7 @@
 package gen;
 
 using iqua.Html;
+using gen.UI;
 import iqua.VirtualNode;
 import iqua.Architecture;
 import gen.GenUpdate;
@@ -20,29 +21,26 @@ class UI {
         return arch.div([CLASS("collapse border-bottom" + heightClass)], content);
     }
 
-    public static function columnLeft(arch:Architecture<GenModel, GenMsg>, column :Column, children :Array<VirtualNode>):VirtualNode {
+    public static function column(arch:Architecture<GenModel, GenMsg>, column :Column, children :Array<VirtualNode>):VirtualNode {
         var openClass = column.isOpen ? " open" : " closed";
         var content = column.isOpen 
-            ? arch.div([CLASS("flex-column column-content border-left")], children)
+            ? arch.div([CLASS("flex-column column-content border-left border-right")], children)
             : null;
 
-        var arrow = column.isOpen ? "▶" : "◀";
-        return arch.div([CLASS("column flex-row border-right" + openClass)], [
-            arch.h1([CLASS("column-collapser"), ON_CLICK(ToggleColumn(column))], arrow),
-            content
-        ]);
+        var innerConent = [
+            arch.div([CLASS("column-collapser barrier")], null),
+            content,
+            arch.h1([CLASS("column-collapser toggler"), ON_CLICK(ToggleColumn(column))], "⋮")
+        ];
+        if(column.isLeft) {
+            innerConent.reverse();
+        }
+
+        return arch.div([CLASS("column flex-row border-right border-left" + openClass)], innerConent);
     }
 
-    public static function columnRight(arch:Architecture<GenModel, GenMsg>, column :Column, children :Array<VirtualNode>):VirtualNode {
-        var openClass = column.isOpen ? " open" : " closed";
-        var content = column.isOpen 
-            ? arch.div([CLASS("flex-column column-content border-right")], children)
-            : null;
-
-        var arrow = column.isOpen ? "◀" : "▶";
-        return arch.div([CLASS("column flex-row border-left" + openClass)], [
-            content,
-            arch.h1([CLASS("column-collapser"), ON_CLICK(ToggleColumn(column))], arrow)
-        ]);
+    public static function bottom(arch:Architecture<GenModel, GenMsg>, bottom :WindowContent, children :Array<VirtualNode>):VirtualNode {
+        var openClass = bottom.isOpen ? " open" : " closed";
+        return arch.div([CLASS("bottom-row border-top" + openClass)], [arch.collapsingWindow(bottom, children)]);
     }
 }
