@@ -13,9 +13,9 @@ class GenView {
 				arch.h1([], "Game Editor")
 			]),
 			arch.div([CLASS("main-content flex-row")], [
-				arch.column(model.columnLeft ,[for (window in model.windowsLeft) arch.collapsingWindow(window, [])]),
+				arch.columnLeft(model.columnLeft ,[for (window in model.windowsLeft) arch.collapsingWindow(window, [])]),
 				arch.div([CLASS("game-window")], []),
-				arch.column(model.columnRight ,[for (window in model.windowsRight) arch.collapsingWindow(window, [])]),
+				arch.columnRight(model.columnRight ,[for (window in model.windowsRight) arch.collapsingWindow(window, [])]),
 			])
 		]);
 	}

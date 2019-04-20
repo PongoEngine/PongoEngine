@@ -10,8 +10,8 @@ class GenModel
 
 	public function new():Void 
 	{
-		this.columnLeft = new Column(true);
-		this.columnRight = new Column(false);
+		this.columnLeft = new Column();
+		this.columnRight = new Column();
 
 		this.windowsLeft = [
 			new WindowContent("wl1"),
@@ -32,11 +32,9 @@ class GenModel
 class Column
 {
 	public var isOpen :Bool;
-	public var isLeft :Bool;
 
-	public function new(isLeft :Bool):Void 
+	public function new():Void 
 	{
-		this.isLeft = isLeft;
 		this.isOpen = true;
 	}
 }

@@ -1,10 +1,37 @@
-$column-width: 600px;
+$column-width: 400px;
+$collapser-width: 20px;
 
 .column {
-  background-color: #222;
+  background-color: #444;
   height: 100%;
+  width: 20px;
+  flex-shrink: 0;
 }
 .column.open {
   width: $column-width;
 }
 
+.column.closed {
+  width: $collapser-width;
+}
+
+.column-content {
+  width: 100%;
+}
+
+.column-collapser {
+  width: $collapser-width;
+  text-align: center;
+  vertical-align: middle;
+  align-self: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.column-collapser {
+  height: 100%;
+  padding-top: 4px;
+  background-color: #555;
+  color: #222;
+  box-sizing: border-box;
+}
