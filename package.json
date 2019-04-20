@@ -1,0 +1,17 @@
+{
+  "name": "PongoEngine",
+  "version": "1.0.0",
+  "description": "Pongo Game Engine",
+  "main": "index.js",
+  "repository": "https://github.com/PongoEngine/PongoEngine.git",
+  "author": "Jeremy <cream@sourcre.am>",
+  "license": "MIT",
+  "dependencies": {
+    "carlo": "^0.9.45",
+    "parcel-bundler": "^1.12.3",
+    "snabbdom": "^0.7.3"
+  },
+  "devDependencies": {
+    "sass": "^1.19.0"
+  }
+}

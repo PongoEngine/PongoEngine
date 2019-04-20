@@ -1,0 +1,6 @@
+-cp lib/Iqua/src
+-cp core
+-D analyzer-optimize
+-main Main
+-dce full
+--js app/js/runtime.js

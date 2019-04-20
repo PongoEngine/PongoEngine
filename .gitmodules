@@ -1,0 +1,3 @@
+[submodule "lib/Iqua"]
+	path = lib/Iqua
+	url = https://github.com/PongoEngine/Iqua
