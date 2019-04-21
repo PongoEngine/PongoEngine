@@ -4,8 +4,10 @@ using iqua.Html;
 using gen.view.UI;
 import iqua.VirtualNode;
 import iqua.Architecture;
-import gen.GenUpdate;
+import gen.update.GenMsg;
 import gen.model.GenModel;
+import gen.model.Column;
+import gen.model.WindowContent;
 
 class UI {
     public static function collapsingWindow(arch:Architecture<GenModel, GenMsg>, window :WindowContent, children :Array<VirtualNode>):VirtualNode {

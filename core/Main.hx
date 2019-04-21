@@ -1,6 +1,6 @@
 import iqua.Architecture;
 import gen.model.GenModel;
-import gen.GenUpdate;
+import gen.update.GenUpdate;
 import gen.view.GenView;
 
 class Main {

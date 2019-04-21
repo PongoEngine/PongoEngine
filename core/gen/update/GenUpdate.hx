@@ -1,6 +1,9 @@
-package gen;
+package gen.update;
 
 import gen.model.GenModel;
+import gen.model.Column;
+import gen.model.WindowContent;
+import gen.model.Point;
 
 class GenUpdate {
 	public static function update(msg:GenMsg, model:GenModel):GenModel {
@@ -50,14 +53,4 @@ class GenUpdate {
 			model.stretchableColumn = null;
 		}
 	}
-}
-
-enum GenMsg {
-	NoOp;
-	ToggleWindow(window :WindowContent);
-	ToggleColumn(column :Column);
-	GlobalMove(data:Dynamic, x :Int, y :Int);
-	GlobalUp(data:Dynamic, x :Int, y :Int);
-	GlobalDown(data:Dynamic, x :Int, y :Int);
-	StretchColumn(data:Column, x :Int, y :Int);
 }
