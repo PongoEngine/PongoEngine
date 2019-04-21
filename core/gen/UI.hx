@@ -26,9 +26,10 @@ class UI {
         var content = column.isOpen 
             ? arch.div([CLASS("flex-column column-content border-left border-right")], children)
             : null;
+        var leftClass = column.isLeft ? " left" : "";
 
         var innerConent = [
-            arch.h1([CLASS("column-collapser toggler"), ON_DBL_CLICK(ToggleColumn(column))], "⋮"),
+            arch.h1([CLASS("column-collapser toggler"), MOUSE_DOWN(column,StretchColumn), ON_DBL_CLICK(ToggleColumn(column))], "⋮"),
             content,
             arch.div([CLASS("column-collapser barrier")], null)
         ];
@@ -36,8 +37,7 @@ class UI {
             innerConent.reverse();
         }
 
-        return arch.div([CLASS("column flex-row border-right border-left" + openClass)], innerConent);
-        // return arch.div([CLASS("column flex-row border-right border-left" + openClass), STYLE({width: column.width + "px"})], innerConent);
+        return arch.div([CLASS("column flex-row border-right border-left" + openClass + leftClass), STYLE({width: column.width + "px"})], innerConent);
     }
 
     public static function bottom(arch:Architecture<GenModel, GenMsg>, bottom :WindowContent, children :Array<VirtualNode>):VirtualNode {
