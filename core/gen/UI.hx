@@ -28,15 +28,16 @@ class UI {
             : null;
 
         var innerConent = [
-            arch.div([CLASS("column-collapser barrier")], null),
+            arch.h1([CLASS("column-collapser toggler"), ON_DBL_CLICK(ToggleColumn(column))], "⋮"),
             content,
-            arch.h1([CLASS("column-collapser toggler"), ON_CLICK(ToggleColumn(column))], "⋮")
+            arch.div([CLASS("column-collapser barrier")], null)
         ];
         if(column.isLeft) {
             innerConent.reverse();
         }
 
         return arch.div([CLASS("column flex-row border-right border-left" + openClass)], innerConent);
+        // return arch.div([CLASS("column flex-row border-right border-left" + openClass), STYLE({width: column.width + "px"})], innerConent);
     }
 
     public static function bottom(arch:Architecture<GenModel, GenMsg>, bottom :WindowContent, children :Array<VirtualNode>):VirtualNode {

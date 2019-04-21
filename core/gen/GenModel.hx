@@ -15,10 +15,7 @@ class GenModel
 		], true);
 		this.columnRight = new Column([
 			new WindowContent("wr1"),
-			new WindowContent("wr2"),
-			new WindowContent("wr3"),
-			new WindowContent("wr4"),
-			new WindowContent("wr5")
+			new WindowContent("wr2")
 		], false);
 		this.bottom = new WindowContent("Bottom");
 
@@ -27,12 +24,14 @@ class GenModel
 
 class Column
 {
+	public var width :Int;
 	public var isOpen :Bool;
 	public var isLeft :Bool;
 	public var windows :Array<WindowContent>;
 
 	public function new(windows :Array<WindowContent>, isLeft :Bool):Void 
 	{
+		this.width = 400;
 		this.isOpen = true;
 		this.isLeft = isLeft;
 		this.windows = windows;
