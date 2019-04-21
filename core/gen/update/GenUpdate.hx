@@ -1,15 +1,11 @@
 package gen.update;
 
 import gen.model.GenModel;
-import gen.model.Column;
-import gen.model.WindowContent;
 import gen.model.Point;
 
 class GenUpdate {
 	public static function update(msg:GenMsg, model:GenModel):GenModel {
 		switch msg {
-			case NoOp:
-				trace("noOp");
 			case ToggleWindow(window):
 				window.isOpen = !window.isOpen;
 			case ToggleColumn(column):
@@ -22,7 +18,13 @@ class GenUpdate {
 			case GlobalDown(_,x,y):
 				updatePoint(model.activePoint, x, y);
 			case StretchColumn(column,x,y):
+				column.isActive = true;
 				model.stretchableColumn = column;
+			case ToggleButton(button):
+				button.isActive = !button.isActive;
+				trace(model.text.data);
+			case TextInput(text, str):
+				text.data = str;
 		}
 		return model;
 	}
@@ -41,6 +43,7 @@ class GenUpdate {
 
 			var success = model.stretchableColumn.stretchBy(mX);
 			if(!success) {
+				model.stretchableColumn.isActive = false;
 				model.stretchableColumn = null;
 			}
 		}
@@ -50,6 +53,7 @@ class GenUpdate {
 	{
 		if(model.stretchableColumn != null) {
 			model.stretchableColumn.checkWidth();
+			model.stretchableColumn.isActive = false;
 			model.stretchableColumn = null;
 		}
 	}

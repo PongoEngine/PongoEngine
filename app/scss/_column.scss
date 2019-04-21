@@ -27,6 +27,9 @@ $collapser-width: 16px;
 .column-collapser.toggler {
   width: $collapser-width;
 }
+.column-collapser.toggler.active {
+  background-color: #888;
+}
 
 .column-collapser.barrier {
   width: 2px;

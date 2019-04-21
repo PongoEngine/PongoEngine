@@ -7,6 +7,8 @@ import iqua.Architecture;
 import gen.update.GenMsg;
 import gen.model.GenModel;
 import gen.model.Column;
+import gen.model.Button;
+import gen.model.Text;
 import gen.model.WindowContent;
 
 class UI {
@@ -29,9 +31,10 @@ class UI {
             ? arch.div([CLASS("flex-column column-content border-left border-right")], children)
             : null;
         var leftClass = column.isLeft ? " left" : "";
+        var activeClass = column.isActive ? " active" : "";
 
         var innerConent = [
-            arch.h1([CLASS("column-collapser toggler"), MOUSE_DOWN(column,StretchColumn), ON_DBL_CLICK(ToggleColumn(column))], "⋮"),
+            arch.h1([CLASS("column-collapser toggler" + activeClass), MOUSE_DOWN(column,StretchColumn), ON_DBL_CLICK(ToggleColumn(column))], "⋮"),
             content,
             arch.div([CLASS("column-collapser barrier")], null)
         ];
@@ -47,7 +50,12 @@ class UI {
         return arch.div([CLASS("bottom-row border-top" + openClass)], [arch.collapsingWindow(bottom, children)]);
     }
 
-    public static function pushButton(arch:Architecture<GenModel, GenMsg>, children :Array<VirtualNode>):VirtualNode {
-        return arch.div([CLASS("button")], children);
+    public static function pushButton(arch:Architecture<GenModel, GenMsg>, button :Button, children :Array<VirtualNode>):VirtualNode {
+        var activeClass = button.isActive ? " active" : "";
+        return arch.div([CLASS("button" + activeClass), ON_CLICK(ToggleButton(button))], children);
+    }
+
+    public static function inputText(arch:Architecture<GenModel, GenMsg>, text :Text):VirtualNode {
+        return arch.input([VALUE(text.data), ON_INPUT(text, TextInput)]);
     }
 }
