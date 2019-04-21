@@ -1,6 +1,6 @@
 package gen;
 
-import gen.GenModel;
+import gen.model.GenModel;
 
 class GenUpdate {
 	public static function update(msg:GenMsg, model:GenModel):GenModel {

@@ -1,11 +1,11 @@
-package gen;
+package gen.view;
 
 using iqua.Html;
-using gen.UI;
+using gen.view.UI;
 import iqua.VirtualNode;
 import iqua.Architecture;
 import gen.GenUpdate;
-import gen.GenModel;
+import gen.model.GenModel;
 
 class UI {
     public static function collapsingWindow(arch:Architecture<GenModel, GenMsg>, window :WindowContent, children :Array<VirtualNode>):VirtualNode {
@@ -43,5 +43,9 @@ class UI {
     public static function bottom(arch:Architecture<GenModel, GenMsg>, bottom :WindowContent, children :Array<VirtualNode>):VirtualNode {
         var openClass = bottom.isOpen ? " open" : " closed";
         return arch.div([CLASS("bottom-row border-top" + openClass)], [arch.collapsingWindow(bottom, children)]);
+    }
+
+    public static function pushButton(arch:Architecture<GenModel, GenMsg>, children :Array<VirtualNode>):VirtualNode {
+        return arch.div([CLASS("button")], children);
     }
 }

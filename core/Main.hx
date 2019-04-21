@@ -1,7 +1,7 @@
 import iqua.Architecture;
-import gen.GenModel;
+import gen.model.GenModel;
 import gen.GenUpdate;
-import gen.GenView;
+import gen.view.GenView;
 
 class Main {
 	static function main() {

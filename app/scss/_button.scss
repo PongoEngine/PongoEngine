@@ -1,0 +1,15 @@
+$collapser-width: 16px;
+
+.button {
+    min-width: 100px;
+    background-color: #555;
+    padding: 3px;
+    border: 1px solid #111;
+    border-radius: 3px;
+    display: inline-block;
+    user-select: none;
+}
+
+.button.active {
+    background-color: #666;
+}

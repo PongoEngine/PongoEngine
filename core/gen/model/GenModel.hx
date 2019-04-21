@@ -1,4 +1,4 @@
-package gen;
+package gen.model;
 
 class GenModel 
 {
