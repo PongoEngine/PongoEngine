@@ -4,6 +4,7 @@ using iqua.Html;
 using gen.view.UI;
 import iqua.VirtualNode;
 import iqua.Architecture;
+import iqua.Lazy;
 import gen.update.GenMsg;
 import gen.model.GenModel;
 import gen.model.Column;
@@ -56,6 +57,7 @@ class UI {
     }
 
     public static function inputText(arch:Architecture<GenModel, GenMsg>, text :Text):VirtualNode {
+
         return arch.input([VALUE(text.data), ON_INPUT(text, TextInput)]);
     }
 }

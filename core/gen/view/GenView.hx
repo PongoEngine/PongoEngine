@@ -1,6 +1,7 @@
 package gen.view;
 
 using iqua.Html;
+import iqua.Lazy;
 using gen.view.UI;
 import iqua.VirtualNode;
 import iqua.Architecture;
@@ -21,7 +22,7 @@ class GenView {
 					arch.div([CLASS("game-window")], []),
 					arch.bottom(model.bottom, [
 						arch.pushButton(model.button2, [arch.p([], "Hello")]),
-						arch.inputText(model.text)
+						Lazy.lazy1(UI.inputText)(arch, model.text)
 					])
 				]),
 				arch.column(model.columnRight ,[for (window in model.columnRight.windows) arch.collapsingWindow(window, [

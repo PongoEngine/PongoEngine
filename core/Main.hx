@@ -1,4 +1,5 @@
 import iqua.Architecture;
+import iqua.Lazy;
 import gen.model.GenModel;
 import gen.update.GenUpdate;
 import gen.view.GenView;

@@ -53,6 +53,6 @@ class Column
 	}
 
 	public static inline var MIN_WIDTH :Int = 16;
-	public static inline var MAX_WIDTH :Int = 400;
+	public static inline var MAX_WIDTH :Int = 600;
 	public static inline var COLLAPSING_WIDTH :Int = 120;
 }
