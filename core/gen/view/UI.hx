@@ -4,7 +4,6 @@ using iqua.Html;
 using gen.view.UI;
 import iqua.VirtualNode;
 import iqua.Architecture;
-import iqua.Lazy;
 import gen.update.GenMsg;
 import gen.model.GenModel;
 import gen.model.Column;

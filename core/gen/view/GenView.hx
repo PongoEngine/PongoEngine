@@ -22,7 +22,8 @@ class GenView {
 					arch.div([CLASS("game-window")], []),
 					arch.bottom(model.bottom, [
 						arch.pushButton(model.button2, [arch.p([], "Hello")]),
-						Lazy.lazy1(UI.inputText)(arch, model.text)
+						arch.inputText(model.text),
+						Lazy.lazy1("regTest", cool)(arch, model.text.data)
 					])
 				]),
 				arch.column(model.columnRight ,[for (window in model.columnRight.windows) arch.collapsingWindow(window, [
@@ -31,4 +32,9 @@ class GenView {
 			])
 		]);
 	}
+
+	public static function cool(arch:Architecture<GenModel, GenMsg>, str :String):VirtualNode {
+		return arch.p([], str);
+	}
+	
 }

@@ -8,9 +8,4 @@ class Text
 	{
 		this.data = data;
 	}
-
-	public inline function key() : String
-	{
-		return data;
-	}
 }
