@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "carlo": "^0.9.45",
+    "incremental-dom": "^0.6.0",
     "parcel-bundler": "^1.12.3",
     "snabbdom": "^0.7.3"
   },
