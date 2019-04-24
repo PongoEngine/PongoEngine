@@ -1,4 +1,4 @@
-import iqua.Architecture;
+import towser.Architecture;
 import gen.model.GenModel;
 import gen.update.GenUpdate;
 import gen.view.GenView;

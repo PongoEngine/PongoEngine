@@ -1,11 +1,11 @@
 package gen.view;
 
-import iqua.Html.*;
-import iqua.RenderFunction;
+import towser.Html.*;
+import towser.RenderFunction;
 import gen.view.UI.*;
 import gen.update.GenMsg;
 import gen.model.GenModel;
-import iqua.Lazy;
+import towser.Lazy;
 
 class GenView {
 	// public static function view(model:GenModel) : RenderFunction<GenModel, GenMsg>

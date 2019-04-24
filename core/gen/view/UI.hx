@@ -1,13 +1,13 @@
 package gen.view;
 
-import iqua.Html.*;
+import towser.Html.*;
 import gen.update.GenMsg;
 import gen.model.GenModel;
 import gen.model.Column;
 import gen.model.Button;
 import gen.model.Text;
 import gen.model.WindowContent;
-import iqua.RenderFunction;
+import towser.RenderFunction;
 
 class UI {
     public static function collapsingWindow(window :WindowContent, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
