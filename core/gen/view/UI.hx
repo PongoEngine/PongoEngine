@@ -1,8 +1,6 @@
 package gen.view;
 
-using iqua.Html;
-using gen.view.UI;
-import iqua.Architecture;
+import iqua.Html.*;
 import gen.update.GenMsg;
 import gen.model.GenModel;
 import gen.model.Column;
@@ -12,55 +10,55 @@ import gen.model.WindowContent;
 import iqua.RenderFunction;
 
 class UI {
-    public static function collapsingWindow(arch:Architecture<GenModel, GenMsg>, window :WindowContent, children :Array<RenderFunction>) : RenderFunction 
+    public static function collapsingWindow(window :WindowContent, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
     {
         var heightClass = window.isOpen ? " open" : "";
         var arrow = window.isOpen ? "▼ " : "▶ ";
 
         var content = window.isOpen ? 
             [
-                arch.h1([CLASS("collapse-title"), ON_CLICK(ToggleWindow(window))], arrow + window.title),
-                arch.div([], children)
-            ] : [arch.h1([CLASS("collapse-title"), ON_CLICK(ToggleWindow(window))], arrow + window.title)];
+                h1([CLASS("collapse-title"), ON_CLICK(ToggleWindow(window))], arrow + window.title),
+                div([], children)
+            ] : [h1([CLASS("collapse-title"), ON_CLICK(ToggleWindow(window))], arrow + window.title)];
 
-        return arch.div([CLASS("collapse border-bottom" + heightClass)], content);
+        return div([CLASS("collapse border-bottom" + heightClass)], content);
     }
 
-    public static function column(arch:Architecture<GenModel, GenMsg>, column :Column, children :Array<RenderFunction>) : RenderFunction 
+    public static function column(column :Column, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
     {
         var openClass = column.isOpen ? " open" : " closed";
         var content = column.isOpen 
-            ? arch.div([CLASS("flex-column column-content border-left border-right")], children)
-            : arch.div([], []);
+            ? div([CLASS("flex-column column-content border-left border-right")], children)
+            : div([], []);
         var leftClass = column.isLeft ? " left" : "";
         var activeClass = column.isActive ? " active" : "";
 
         var innerConent = [
-            arch.h1([CLASS("column-collapser toggler" + activeClass), MOUSE_DOWN(column,StretchColumn), ON_DBL_CLICK(ToggleColumn(column))], "⋮"),
+            h1([CLASS("column-collapser toggler" + activeClass), MOUSE_DOWN(column,StretchColumn), ON_DBL_CLICK(ToggleColumn(column))], "⋮"),
             content,
-            arch.div([CLASS("column-collapser barrier")], [])
+            div([CLASS("column-collapser barrier")], [])
         ];
         if(column.isLeft) {
             innerConent.reverse();
         }
 
-        return arch.div([CLASS("column flex-row border-right border-left" + openClass + leftClass), STYLE({width: column.width + "px"})], innerConent);
+        return div([CLASS("column flex-row border-right border-left" + openClass + leftClass), STYLE({width: column.width + "px"})], innerConent);
     }
 
-    public static function bottom(arch:Architecture<GenModel, GenMsg>, bottom :WindowContent, children :Array<RenderFunction>) : RenderFunction 
+    public static function bottom(bottom :WindowContent, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
     {
         var openClass = bottom.isOpen ? " open" : " closed";
-        return arch.div([CLASS("bottom-row border-top" + openClass)], [arch.collapsingWindow(bottom, children)]);
+        return div([CLASS("bottom-row border-top" + openClass)], [collapsingWindow(bottom, children)]);
     }
 
-    public static function pushButton(arch:Architecture<GenModel, GenMsg>, button :Button, children :Array<RenderFunction>) : RenderFunction 
+    public static function pushButton(button :Button, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
     {
         var activeClass = button.isActive ? " active" : "";
-        return arch.div([CLASS("button" + activeClass), ON_CLICK(ToggleButton(button))], children);
+        return div([CLASS("button" + activeClass), ON_CLICK(ToggleButton(button))], children);
     }
 
-    public static function inputText(arch:Architecture<GenModel, GenMsg>, text :Text) : RenderFunction 
+    public static function inputText(text :Text) : RenderFunction<GenModel, GenMsg> 
     {
-        return arch.input([VALUE(text.data), ON_INPUT(text, TextInput)]);
+        return input([VALUE(text.data), ON_INPUT(text, TextInput)]);
     }
 }

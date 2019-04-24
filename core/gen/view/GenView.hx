@@ -1,31 +1,36 @@
 package gen.view;
 
-using iqua.Html;
+import iqua.Html.*;
 import iqua.RenderFunction;
-using gen.view.UI;
-import iqua.Architecture;
+import gen.view.UI.*;
 import gen.update.GenMsg;
 import gen.model.GenModel;
+import iqua.Lazy;
 
 class GenView {
-	public static function view(arch:Architecture<GenModel, GenMsg>, model:GenModel) : RenderFunction 
+	// public static function view(model:GenModel) : RenderFunction<GenModel, GenMsg>
+	// {
+	// 	return Lazy.lazy1("hello", cool)(model);
+	// }
+
+	public static function view(model:GenModel) : RenderFunction<GenModel, GenMsg>
 	{
-		return arch.div([CLASS("full-screen"), MOUSE_DOWN(null,GlobalDown), MOUSE_UP(null,GlobalUp), MOUSE_MOVE(null,GlobalMove)], [
-			arch.div([CLASS("nav-bar border-bottom")], [
-				arch.pushButton(model.button1, [arch.p([], "Hello")])
+		return div([CLASS("full-screen"), MOUSE_DOWN(null,GlobalDown), MOUSE_UP(null,GlobalUp), MOUSE_MOVE(null,GlobalMove)], [
+			div([CLASS("nav-bar border-bottom")], [
+				pushButton(model.button1, [p([], "Hello")])
 			]),
-			arch.div([CLASS("main-content flex-row")], [
-				arch.column(model.columnLeft ,[for (window in model.columnLeft.windows) arch.collapsingWindow(window, [
+			div([CLASS("main-content flex-row")], [
+				column(model.columnLeft ,[for (window in model.columnLeft.windows) collapsingWindow(window, [
 					
 				])]),
-				arch.div([CLASS("woah flex-column")], [
-					arch.div([CLASS("game-window")], []),
-					arch.bottom(model.bottom, [
-						arch.pushButton(model.button2, [arch.p([], "Hello")]),
-						arch.inputText(model.text)
+				div([CLASS("woah flex-column")], [
+					div([CLASS("game-window")], []),
+					bottom(model.bottom, [
+						pushButton(model.button2, [p([], "Hello")]),
+						inputText(model.text)
 					])
 				]),
-				arch.column(model.columnRight ,[for (window in model.columnRight.windows) arch.collapsingWindow(window, [
+				column(model.columnRight ,[for (window in model.columnRight.windows) collapsingWindow(window, [
 
 				])])
 			])
