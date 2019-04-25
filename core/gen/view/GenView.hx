@@ -5,14 +5,8 @@ import towser.RenderFunction;
 import gen.view.UI.*;
 import gen.update.GenMsg;
 import gen.model.GenModel;
-import towser.Lazy;
 
 class GenView {
-	// public static function view(model:GenModel) : RenderFunction<GenModel, GenMsg>
-	// {
-	// 	return Lazy.lazy1("hello", cool)(model);
-	// }
-
 	public static function view(model:GenModel) : RenderFunction<GenModel, GenMsg>
 	{
 		return div([CLASS("full-screen"), MOUSE_DOWN(GlobalDown), MOUSE_UP(GlobalUp), MOUSE_MOVE(GlobalMove)], [
