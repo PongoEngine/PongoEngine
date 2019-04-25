@@ -34,7 +34,7 @@ class UI {
         var activeClass = column.isActive ? " active" : "";
 
         var innerConent = [
-            h1([CLASS("column-collapser toggler" + activeClass), MOUSE_DOWN(column,StretchColumn), ON_DBL_CLICK(ToggleColumn(column))], "⋮"),
+            h1([CLASS("column-collapser toggler" + activeClass), MOUSE_DOWN(StretchColumn.bind(column)), ON_DBL_CLICK(ToggleColumn(column))], "⋮"),
             content,
             div([CLASS("column-collapser barrier")], [])
         ];
@@ -48,7 +48,7 @@ class UI {
     public static function bottom(bottom :WindowContent, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
     {
         var openClass = bottom.isOpen ? " open" : " closed";
-        return div([CLASS("bottom-row border-top" + openClass)], [collapsingWindow(bottom, children)]);
+        return div([CLASS("bottom-row border-top" + openClass), ID("bottom")], [collapsingWindow(bottom, children)]);
     }
 
     public static function pushButton(button :Button, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
@@ -59,6 +59,8 @@ class UI {
 
     public static function inputText(text :Text) : RenderFunction<GenModel, GenMsg> 
     {
-        return input([VALUE(text.data), ON_INPUT(text, TextInput)]);
+        return div([ID("clamms")], [
+            input([VALUE(text.data), ON_INPUT(TextInput.bind(text))])
+        ]);
     }
 }

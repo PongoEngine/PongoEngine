@@ -4,29 +4,33 @@ import gen.model.GenModel;
 import gen.model.Point;
 
 class GenUpdate {
-	public static function update(msg:GenMsg, model:GenModel):GenModel {
-		switch msg {
+	public static function update(msg:GenMsg, model:GenModel):Bool {
+		return switch msg {
 			case ToggleWindow(window):
 				window.isOpen = !window.isOpen;
+				true;
 			case ToggleColumn(column):
 				column.toggleColumn();
-			case GlobalMove(_,x,y):
-				stretchColumn(model, x, y);
-			case GlobalUp(_,x,y):
-				checkForColumn(model);
+				true;
+			case GlobalMove(x,y):
+				return stretchColumn(model, x, y);
+			case GlobalUp(x,y):
 				updatePoint(model.activePoint, x, y);
-			case GlobalDown(_,x,y):
+				return checkForColumn(model);
+			case GlobalDown(x,y):
 				updatePoint(model.activePoint, x, y);
+				true;
 			case StretchColumn(column,x,y):
 				column.isActive = true;
 				model.stretchableColumn = column;
+				true;
 			case ToggleButton(button):
 				button.isActive = !button.isActive;
-				trace(model.text.data);
+				true;
 			case TextInput(text, str):
 				text.data = str;
+				true;
 		}
-		return model;
 	}
 
 	public static inline function updatePoint(point :Point, x :Int, y :Int) : Void
@@ -35,7 +39,7 @@ class GenUpdate {
 		point.y = y;
 	}
 
-	public static inline function stretchColumn(model:GenModel, x :Int, y :Int) : Void
+	public static inline function stretchColumn(model:GenModel, x :Int, y :Int) : Bool
 	{
 		if(model.stretchableColumn != null) {
 			var mX = x - model.activePoint.x;
@@ -46,15 +50,19 @@ class GenUpdate {
 				model.stretchableColumn.isActive = false;
 				model.stretchableColumn = null;
 			}
+			return true;
 		}
+		return false;
 	}
 
-	public static inline function checkForColumn(model:GenModel) : Void
+	public static inline function checkForColumn(model:GenModel) : Bool
 	{
 		if(model.stretchableColumn != null) {
 			model.stretchableColumn.checkWidth();
 			model.stretchableColumn.isActive = false;
 			model.stretchableColumn = null;
+			return true;
 		}
+		return false;
 	}
 }
