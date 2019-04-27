@@ -11,6 +11,8 @@ class GenModel
 	public var stretchableColumn :Column;
 	public var activePoint :Point;
 	public var text :Text;
+	public var floater :FloatingWindow;
+	public var selectedFloater :FloatingWindow;
 
 	public function new():Void 
 	{
@@ -30,5 +32,7 @@ class GenModel
 		this.button1 = new Button(true);
 		this.button2 = new Button(false);
 		this.text = new Text("Hello");
+		this.floater = new FloatingWindow();
+		this.selectedFloater = null;
 	}
 }

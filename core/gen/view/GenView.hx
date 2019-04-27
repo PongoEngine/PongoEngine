@@ -27,7 +27,10 @@ class GenView {
 				column(model.columnRight ,[for (window in model.columnRight.windows) collapsingWindow(window, [
 
 				])])
-			])
+			]),
+			floater(model.floater, [for (window in model.columnRight.windows) collapsingWindow(window, [
+
+			])])
 		]);
 	}
 }

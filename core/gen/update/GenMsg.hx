@@ -1,5 +1,6 @@
 package gen.update;
 
+import gen.model.FloatingWindow;
 import gen.model.Column;
 import gen.model.Button;
 import gen.model.WindowContent;
@@ -14,4 +15,5 @@ enum GenMsg {
 	GlobalUp(x :Int, y :Int);
 	GlobalDown(x :Int, y :Int);
 	StretchColumn(data:Column, x :Int, y :Int);
+	SelectWindow(data:FloatingWindow, x:Int, y :Int);
 }

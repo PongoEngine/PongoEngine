@@ -2,6 +2,7 @@ package gen.update;
 
 import gen.model.GenModel;
 import gen.model.Point;
+import gen.model.FloatingWindow;
 
 class GenUpdate {
 	public static function update(msg:GenMsg, model:GenModel):Bool {
@@ -13,10 +14,18 @@ class GenUpdate {
 				column.toggleColumn();
 				true;
 			case GlobalMove(x,y):
-				return stretchColumn(model, x, y);
+				if(model.selectedFloater != null) {
+					moveFloater(model.activePoint, model.selectedFloater, x, y);
+				}
+				stretchColumn(model, x, y);
+				true;
 			case GlobalUp(x,y):
+				if(model.selectedFloater != null) {
+					model.selectedFloater = null;
+				}
 				updatePoint(model.activePoint, x, y);
-				return checkForColumn(model);
+				checkForColumn(model);
+				true;
 			case GlobalDown(x,y):
 				updatePoint(model.activePoint, x, y);
 				true;
@@ -30,6 +39,9 @@ class GenUpdate {
 			case TextInput(text, str):
 				text.data = str;
 				true;
+			case SelectWindow(window,x,y):
+				model.selectedFloater = window;
+				true;
 		}
 	}
 
@@ -37,6 +49,15 @@ class GenUpdate {
 	{
 		point.x = x;
 		point.y = y;
+	}
+
+	public static inline function moveFloater(activePoint :Point, window:FloatingWindow, x :Int, y :Int) : Void
+	{
+		var mX = x - activePoint.x;
+		var mY = y - activePoint.y;
+		updatePoint(activePoint, x, y);
+		window.position.x += mX;
+		window.position.y += mY;
 	}
 
 	public static inline function stretchColumn(model:GenModel, x :Int, y :Int) : Bool

@@ -6,6 +6,7 @@ import gen.model.GenModel;
 import gen.model.Column;
 import gen.model.Button;
 import gen.model.Text;
+import gen.model.FloatingWindow;
 import gen.model.WindowContent;
 import towser.RenderFunction;
 
@@ -61,6 +62,25 @@ class UI {
     {
         return div([ID("clamms")], [
             input([VALUE(text.data), ON_INPUT(TextInput.bind(text))])
+        ]);
+    }
+
+    public static function floater(floatingWindow :FloatingWindow, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
+    {
+        return div([
+            CLASS("hover-window"), 
+            MOUSE_DOWN(SelectWindow.bind(floatingWindow)), 
+            STYLE({
+                left: floatingWindow.position.x + "px", 
+                top: floatingWindow.position.y + "px",
+                width: floatingWindow.dimensions.x + "px",
+                height: floatingWindow.dimensions.y + "px"
+            })
+        ], [
+            div([CLASS("hover-window-bar border-bottom")], [
+
+            ]),
+            div([CLASS("flex-column")], children)
         ]);
     }
 }

@@ -5,9 +5,9 @@ class Point
 	public var x :Int;
 	public var y :Int;
 
-	public function new() : Void
+	public function new(x :Int = 0, y :Int = 0) : Void
 	{
-		this.x = 0;
-		this.y = 0;
+		this.x = x;
+		this.y = y;
 	}
 }
