@@ -2,14 +2,10 @@ $collapser-width: 16px;
 
 .button {
     min-width: 100px;
-    background-color: $d-shade-4;
     padding: 3px;
-    border: 1px solid $d-shade-0;
+    border-width: 1px;
+    border-style: solid;
     border-radius: 3px;
     display: inline-block;
     user-select: none;
-}
-
-.button.active {
-    background-color: $d-shade-5;
 }

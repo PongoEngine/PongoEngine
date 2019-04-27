@@ -10,13 +10,11 @@ class GenView {
 	public static function view(model:GenModel) : RenderFunction<GenModel, GenMsg>
 	{
 		return div([CLASS("full-screen"), MOUSE_DOWN(GlobalDown), MOUSE_UP(GlobalUp), MOUSE_MOVE(GlobalMove)], [
-			div([CLASS("nav-bar border-bottom")], [
+			div([CLASS("nav-bar color-container border-bottom")], [
 				pushButton(model.button1, [p([], "Hello")])
 			]),
 			div([CLASS("main-content flex-row")], [
-				column(model.columnLeft ,[for (window in model.columnLeft.windows) collapsingWindow(window, [
-					
-				])]),
+				column(model.columnLeft ,[]),
 				div([CLASS("woah flex-column")], [
 					div([CLASS("game-window")], []),
 					bottom(model.bottom, [
@@ -28,9 +26,7 @@ class GenView {
 
 				])])
 			]),
-			floater(model.floater, [for (window in model.columnRight.windows) collapsingWindow(window, [
-
-			])])
+			floater(model.floater, [])
 		]);
 	}
 }

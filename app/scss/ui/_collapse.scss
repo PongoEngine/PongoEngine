@@ -1,17 +1,8 @@
-.collapse {
-  background-color: $d-shade-3;
-}
 .collapse.open {
   height: 100%;
 }
 
 .collapse-title {
-  background-color: #464646;
-  color: #eee;
-  padding: 5px;
+  padding: 8px 10px;
   user-select: none;
-}
-
-.collapse.open > .collapse-title  {
-  border-bottom: 1px solid $d-shade-3;
 }

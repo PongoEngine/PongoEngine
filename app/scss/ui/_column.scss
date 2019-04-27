@@ -1,7 +1,6 @@
 $collapser-width: 16px;
 
 .column {
-  background-color: $d-shade-4;
   height: 100%;
   width: 20px;
   flex-shrink: 0;
@@ -18,17 +17,12 @@ $collapser-width: 16px;
   text-align: center;
   user-select: none;
   cursor: pointer;
-  background-color: #666;
   box-sizing: border-box;
-  color: #000;
   font-size: 32px;
 }
 
 .column-collapser.toggler {
   width: $collapser-width;
-}
-.column-collapser.toggler.active {
-  background-color: #888;
 }
 
 .column-collapser.barrier {

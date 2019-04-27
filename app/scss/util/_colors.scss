@@ -1,14 +1,20 @@
-$d-shade-0: #000;
-$d-shade-1: #111;
-$d-shade-2: #222;
-$d-shade-3: #333;
-$d-shade-4: #555;
-$d-shade-5: #666;
+.color-container {
+    background-color: #444;
+    color: #eee;
+    border-color: #222;
+}
 
+.color-container-lighter {
+    background-color: #4f4f4f;
+    color: #eee;
+    border-color: #222;
+}
 
-$l-shade-0: #ddd;
-$l-shade-1: #ddd;
-$l-shade-2: #555;
-$l-shade-3: #555;
-$l-shade-4: #555;
-$l-shade-5: #555;
+.color-actionable {
+    background-color: #333;
+    color: #eee;
+    border-color: #222;
+}
+.color-actionable.active {
+    background-color: #444;
+}
