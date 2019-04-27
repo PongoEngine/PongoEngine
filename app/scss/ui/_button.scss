@@ -2,14 +2,14 @@ $collapser-width: 16px;
 
 .button {
     min-width: 100px;
-    background-color: #555;
+    background-color: $d-shade-4;
     padding: 3px;
-    border: 1px solid #111;
+    border: 1px solid $d-shade-0;
     border-radius: 3px;
     display: inline-block;
     user-select: none;
 }
 
 .button.active {
-    background-color: #666;
+    background-color: $d-shade-5;
 }

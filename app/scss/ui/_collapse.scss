@@ -1,5 +1,5 @@
 .collapse {
-  background-color: #333;
+  background-color: $d-shade-3;
 }
 .collapse.open {
   height: 100%;
@@ -13,5 +13,5 @@
 }
 
 .collapse.open > .collapse-title  {
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid $d-shade-3;
 }
