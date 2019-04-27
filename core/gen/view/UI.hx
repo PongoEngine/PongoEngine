@@ -71,7 +71,7 @@ class UI {
     {
         return div([
             CLASS("hover-window color-container"), 
-            MOUSE_DOWN(SelectWindow.bind(floatingWindow)), 
+            MOUSE_DOWN(SelectWindow.bind(floatingWindow, false)), 
             STYLE({
                 left: floatingWindow.position.x + "px", 
                 top: floatingWindow.position.y + "px",
@@ -81,7 +81,10 @@ class UI {
         ], [
             div([CLASS("hover-window-bar color-container-darker border-bottom")], []),
             div([CLASS("flex-column")], children),
-            div([CLASS("hover-window-resizer color-container-lighter border-left border-top")], [])
+            div([
+                CLASS("hover-window-resizer color-container-lighter border-left border-top"),
+                MOUSE_DOWN(SelectWindow.bind(floatingWindow, true))
+            ], [])
         ]);
     }
 }

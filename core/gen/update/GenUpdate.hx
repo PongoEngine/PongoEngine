@@ -13,23 +13,24 @@ class GenUpdate {
 			case ToggleColumn(column):
 				column.toggleColumn();
 				true;
-			case GlobalMove(x,y):
+			case GlobalMove(e):
 				if(model.selectedFloater != null) {
-					moveFloater(model.activePoint, model.selectedFloater, x, y);
+					moveFloater(model.activePoint, model.selectedFloater, e.pageX, e.pageY);
 				}
-				stretchColumn(model, x, y);
+				stretchColumn(model, e.pageX, e.pageY);
 				true;
-			case GlobalUp(x,y):
+			case GlobalUp(e):
 				if(model.selectedFloater != null) {
+					model.selectedFloater.isUpdatingWidth = false;
 					model.selectedFloater = null;
 				}
-				updatePoint(model.activePoint, x, y);
+				updatePoint(model.activePoint, e.pageX, e.pageY);
 				checkForColumn(model);
 				true;
-			case GlobalDown(x,y):
-				updatePoint(model.activePoint, x, y);
+			case GlobalDown(e):
+				updatePoint(model.activePoint, e.pageX, e.pageY);
 				true;
-			case StretchColumn(column,x,y):
+			case StretchColumn(column,e):
 				column.isActive = true;
 				model.stretchableColumn = column;
 				true;
@@ -39,8 +40,11 @@ class GenUpdate {
 			case TextInput(text, str):
 				text.data = str;
 				true;
-			case SelectWindow(window,x,y):
+			case SelectWindow(window, updateDimensions, e):
+				e.stopPropagation();
+				updatePoint(model.activePoint, e.pageX, e.pageY);
 				model.selectedFloater = window;
+				model.selectedFloater.isUpdatingWidth = updateDimensions;
 				true;
 		}
 	}
@@ -56,8 +60,14 @@ class GenUpdate {
 		var mX = x - activePoint.x;
 		var mY = y - activePoint.y;
 		updatePoint(activePoint, x, y);
-		window.position.x += mX;
-		window.position.y += mY;
+		if(window.isUpdatingWidth) {
+			window.dimensions.x += mX;
+			window.dimensions.y += mY;
+		}
+		else {
+			window.position.x += mX;
+			window.position.y += mY;
+		}
 	}
 
 	public static inline function stretchColumn(model:GenModel, x :Int, y :Int) : Bool
