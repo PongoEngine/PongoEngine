@@ -10,4 +10,10 @@ class Point
 		this.x = x;
 		this.y = y;
 	}
+
+	public inline function update(x :Int, y :Int) : Void
+	{
+		this.x = x;
+		this.y = y;
+	}
 }

@@ -14,7 +14,9 @@ class GenView {
 				pushButton(model.button1, [p([], "Hello")])
 			]),
 			div([CLASS("main-content flex-row")], [
-				column(model.columnLeft ,[]),
+				column(model.columnLeft ,[for (window in model.columnLeft.windows) collapsingWindow(window, [
+
+				])]),
 				div([CLASS("woah flex-column")], [
 					div([CLASS("game-window")], []),
 					bottom(model.bottom, [
@@ -26,8 +28,7 @@ class GenView {
 
 				])])
 			]),
-			floater(model.floater, []),
-			floater(model.floater2, [])
+			div([], [for (f in model.floaters) floater(f, [])])
 		]);
 	}
 }

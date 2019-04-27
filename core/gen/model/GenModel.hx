@@ -3,7 +3,6 @@ package gen.model;
 class GenModel 
 {
 	public var columnLeft :Column;
-	public var columnLeft2 :Column;
 	public var columnRight :Column;
 	public var bottom :WindowContent;
 	public var button1 :Button;
@@ -12,9 +11,8 @@ class GenModel
 	public var stretchableColumn :Column;
 	public var activePoint :Point;
 	public var text :Text;
-	public var floater :FloatingWindow;
-	public var floater2 :FloatingWindow;
 	public var selectedFloater :FloatingWindow;
+	public var floaters: Array<FloatingWindow>;
 
 	public function new():Void 
 	{
@@ -22,8 +20,6 @@ class GenModel
 			new WindowContent("wl1"),
 			new WindowContent("wl2"),
 			new WindowContent("wl3")
-		], true);
-		this.columnLeft2 = new Column([
 		], true);
 		this.columnRight = new Column([
 			new WindowContent("wr1"),
@@ -36,8 +32,12 @@ class GenModel
 		this.button1 = new Button(true);
 		this.button2 = new Button(false);
 		this.text = new Text("Hello");
-		this.floater = new FloatingWindow();
-		this.floater2 = new FloatingWindow();
+
+		this.floaters = [
+			new FloatingWindow(),
+			new FloatingWindow()
+		];
+
 		this.selectedFloater = null;
 	}
 }

@@ -24,11 +24,11 @@ class GenUpdate {
 					model.selectedFloater.isUpdatingWidth = false;
 					model.selectedFloater = null;
 				}
-				updatePoint(model.activePoint, e.pageX, e.pageY);
+				model.activePoint.update(e.pageX, e.pageY);
 				checkForColumn(model);
 				true;
 			case GlobalDown(e):
-				updatePoint(model.activePoint, e.pageX, e.pageY);
+				model.activePoint.update(e.pageX, e.pageY);
 				true;
 			case StretchColumn(column,e):
 				column.isActive = true;
@@ -42,24 +42,21 @@ class GenUpdate {
 				true;
 			case SelectWindow(window, updateDimensions, e):
 				e.stopPropagation();
-				updatePoint(model.activePoint, e.pageX, e.pageY);
+				model.activePoint.update(e.pageX, e.pageY);
 				model.selectedFloater = window;
 				model.selectedFloater.isUpdatingWidth = updateDimensions;
+
+				model.floaters.remove(window);
+				model.floaters.push(window);
 				true;
 		}
-	}
-
-	public static inline function updatePoint(point :Point, x :Int, y :Int) : Void
-	{
-		point.x = x;
-		point.y = y;
 	}
 
 	public static inline function moveFloater(activePoint :Point, window:FloatingWindow, x :Int, y :Int) : Void
 	{
 		var mX = x - activePoint.x;
 		var mY = y - activePoint.y;
-		updatePoint(activePoint, x, y);
+		activePoint.update(x, y);
 		if(window.isUpdatingWidth) {
 			window.dimensions.x += mX;
 			window.dimensions.y += mY;
@@ -74,7 +71,7 @@ class GenUpdate {
 	{
 		if(model.stretchableColumn != null) {
 			var mX = x - model.activePoint.x;
-			updatePoint(model.activePoint, x, y);
+			model.activePoint.update(x, y);
 
 			var success = model.stretchableColumn.stretchBy(mX);
 			if(!success) {
