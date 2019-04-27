@@ -60,8 +60,10 @@ class UI {
 
     public static function inputText(text :Text) : RenderFunction<GenModel, GenMsg> 
     {
-        return div([ID("clamms")], [
-            input([VALUE(text.data), ON_INPUT(TextInput.bind(text))])
+        return input([
+            CLASS("input-text color-actionable"), 
+            VALUE(text.data), 
+            ON_INPUT(TextInput.bind(text))
         ]);
     }
 
