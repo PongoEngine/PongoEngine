@@ -13,6 +13,7 @@ class GenModel
 	public var activePoint :Point;
 	public var text :Text;
 	public var floater :FloatingWindow;
+	public var floater2 :FloatingWindow;
 	public var selectedFloater :FloatingWindow;
 
 	public function new():Void 
@@ -36,6 +37,7 @@ class GenModel
 		this.button2 = new Button(false);
 		this.text = new Text("Hello");
 		this.floater = new FloatingWindow();
+		this.floater2 = new FloatingWindow();
 		this.selectedFloater = null;
 	}
 }

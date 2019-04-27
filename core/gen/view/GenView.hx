@@ -26,7 +26,8 @@ class GenView {
 
 				])])
 			]),
-			floater(model.floater, [])
+			floater(model.floater, []),
+			floater(model.floater2, [])
 		]);
 	}
 }

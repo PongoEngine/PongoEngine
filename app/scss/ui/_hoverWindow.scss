@@ -10,3 +10,13 @@
 .hover-window-bar {
   height: 30px;
 }
+
+.hover-window-resizer {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 20px;
+  height: 20px;
+  border-top-left-radius: 100%;
+
+}
