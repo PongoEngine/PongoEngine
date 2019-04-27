@@ -3,6 +3,7 @@ package gen.model;
 class GenModel 
 {
 	public var columnLeft :Column;
+	public var columnLeft2 :Column;
 	public var columnRight :Column;
 	public var bottom :WindowContent;
 	public var button1 :Button;
@@ -20,6 +21,8 @@ class GenModel
 			new WindowContent("wl1"),
 			new WindowContent("wl2"),
 			new WindowContent("wl3")
+		], true);
+		this.columnLeft2 = new Column([
 		], true);
 		this.columnRight = new Column([
 			new WindowContent("wr1"),

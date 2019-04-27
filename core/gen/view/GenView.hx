@@ -10,7 +10,7 @@ class GenView {
 	public static function view(model:GenModel) : RenderFunction<GenModel, GenMsg>
 	{
 		return div([CLASS("full-screen"), MOUSE_DOWN(GlobalDown), MOUSE_UP(GlobalUp), MOUSE_MOVE(GlobalMove)], [
-			div([CLASS("nav-bar color-container border-bottom")], [
+			div([CLASS("nav-bar color-container-darker border-bottom")], [
 				pushButton(model.button1, [p([], "Hello")])
 			]),
 			div([CLASS("main-content flex-row")], [

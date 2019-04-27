@@ -79,7 +79,7 @@ class UI {
                 height: floatingWindow.dimensions.y + "px"
             })
         ], [
-            div([CLASS("hover-window-bar color-container border-bottom")], [
+            div([CLASS("hover-window-bar color-container-darker border-bottom")], [
 
             ]),
             div([CLASS("flex-column")], children)
