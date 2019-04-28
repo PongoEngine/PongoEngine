@@ -24,6 +24,25 @@ class Material
         ]);
     }
 
+    public static function sliderDiscrete<Model, Msg>(msg :String -> Msg, min :Int, max :Int, step :Int) :RenderFunction<Model, Msg>
+    {
+        var stepCount = (max-min) * step;
+        return div([], [
+            input([
+                ON_CHANGE(msg),
+                ON_INPUT(msg),
+                TYPE("range"), 
+                ATTR("min", min), 
+                ATTR("max", max), 
+                ATTR("step", step), 
+                ATTR("list", "steplist"), 
+                CLASS("m-slider-continuous")
+            ]),
+            datalist([ID("steplist")], [
+                for(i in 0...stepCount) option([], i + "")
+            ])
+        ]);
+    }
 
     //------------ SNACKBARS -----------
     public static function snackbar<Model, Msg>(children :Array<RenderFunction<Model, Msg>>) :RenderFunction<Model, Msg>

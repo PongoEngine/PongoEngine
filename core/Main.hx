@@ -43,6 +43,9 @@ class Main {
 			]),
 			div([STYLE({marginTop: "10px"})], [
 				sliderContinuous(SLIDER_CHANGE, 0, 2)
+			]),
+			div([STYLE({marginTop: "10px"})], [
+				sliderDiscrete(SLIDER_CHANGE, 0, 200, 10)
 			])
 		]);
 	}
