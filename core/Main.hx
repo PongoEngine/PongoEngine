@@ -31,7 +31,18 @@ class Main {
 				textFieldOutlined(UPDATE_TEXT, model.moneyField)
 			]),
 			div([STYLE({marginTop: "10px"})], [
-				for(tab in model.tabs) fixedTab(tab)
+				fixedTabs(CLICK_TAB, model.tabs)
+			]),
+			div([STYLE({marginTop: "10px", width: "300px"})], [
+				scrollableTabs(CLICK_TAB, model.tabs)
+			]),
+			div([STYLE({marginTop: "10px"})], [
+				snackbar([
+					span([], 'Saved in "Wedding" album')
+				])
+			]),
+			div([STYLE({marginTop: "10px"})], [
+				sliderContinuous(SLIDER_CHANGE, 0, 2)
 			])
 		]);
 	}
@@ -40,6 +51,11 @@ class Main {
 		switch msg {
 			case UPDATE_TEXT(text):
 				model.moneyField.value = text;
+			case CLICK_TAB(tabs, tab):
+				for(t in tabs) t.isActive = false;
+				tab.isActive = true;
+			case SLIDER_CHANGE(val):
+				trace(val);
 		}
 		return true;
 	}
@@ -69,4 +85,6 @@ class PongoModel
 enum PongoMsg
 {
 	UPDATE_TEXT(text :String);
+	SLIDER_CHANGE(val :String);
+	CLICK_TAB(tabs :Array<Tab>, tab :Tab);
 }

@@ -8,18 +8,45 @@ import perdita.model.Tab;
 
 class Material
 {
-    public static function fixedTab<Model, Msg>(tab :Tab) :RenderFunction<Model, Msg>
+
+    //------------ SLIDERS -----------
+    public static function sliderContinuous<Model, Msg>(msg :String -> Msg, min :Int, max :Int) :RenderFunction<Model, Msg>
     {
-        return div([CLASS("m-tab-fixed")], [span([], tab.value)]);
+        var step = (max - min) / 500;
+        return input([
+            ON_CHANGE(msg),
+            ON_INPUT(msg),
+            TYPE("range"), 
+            ATTR("min", min), 
+            ATTR("max", max), 
+            ATTR("step", step), 
+            CLASS("m-slider-continuous")
+        ]);
     }
 
-    public static function scrollableTab<Model, Msg>(tab :Tab) :RenderFunction<Model, Msg>
+
+    //------------ SNACKBARS -----------
+    public static function snackbar<Model, Msg>(children :Array<RenderFunction<Model, Msg>>) :RenderFunction<Model, Msg>
     {
-        return div([CLASS("m-tab-scrollable")], [span([], tab.value)]);
+        return div([CLASS("m-snackbar")], children);
+    }
+
+    //------------ TABS -----------
+    public static function fixedTabs<Model, Msg>(msg :Array<Tab> -> Tab -> Msg, tabs :Array<Tab>) :RenderFunction<Model, Msg>
+    {
+        return div([], [
+            for(tab in tabs) span([CLASS("m-tab" + (tab.isActive ? " active" : "")), ON_CLICK(msg(tabs, tab))], tab.value)
+        ]);
+    }
+
+    public static function scrollableTabs<Model, Msg>(msg :Array<Tab> -> Tab -> Msg, tabs :Array<Tab>) :RenderFunction<Model, Msg>
+    {
+        return div([CLASS("m-tab-scrollable")], [
+            for(tab in tabs) span([CLASS("m-tab" + (tab.isActive ? " active" : "")), ON_CLICK(msg(tabs, tab))], tab.value)
+        ]);
     }
 
     //------------ TEXTFIELDS -----------
-
     public static function textFieldFilled<Model, Msg>(msg :String -> Msg, field :Textfield) :RenderFunction<Model, Msg>
     {
         var filledClass = field.value == "" ? "" : " filled";
@@ -39,7 +66,6 @@ class Material
     }
 
     //------------ TOOLTIP -----------
-
     public static function tooltip<Model, Msg>(tip :String) :RenderFunction<Model, Msg>
     {
         return div([CLASS("m-tooltip m-fade-in")], [span([], tip)]);
