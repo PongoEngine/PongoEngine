@@ -1,11 +1,8 @@
 import towser.Architecture;
 import towser.RenderFunction;
-import towser.Attribute;
 import towser.Html.*;
-import gen.model.GenModel;
-import gen.update.GenUpdate;
-import gen.view.GenView;
-import perdita.view.Tooltip.tooltip;
+import perdita.Material.*;
+import perdita.model.Textfield;
 
 class Main {
 	static function main() {
@@ -25,24 +22,33 @@ class Main {
 	public static function view(model:PongoModel) : RenderFunction<PongoModel, PongoMsg>
 	{
 		return div([CLASS("full-screen")], [
-			tooltip("Print ⌘ + P")
+			tooltip("Open ⌘ + O"),
+			div([STYLE({marginTop: "10px"})], [
+				textFieldFilled(UPDATE_TEXT, model.moneyField)
+			])
 		]);
 	}
 
 	public static function update(msg:PongoMsg, model:PongoModel):Bool {
+		switch msg {
+			case UPDATE_TEXT(text):
+				model.moneyField.value = text;
+		}
 		return true;
 	}
 }
 
 class PongoModel
 {
+	public var moneyField :Textfield;
+
 	public function new() : Void
 	{
-
+		this.moneyField = new Textfield("Money", "");
 	}
 }
 
 enum PongoMsg
 {
-
+	UPDATE_TEXT(text :String);
 }

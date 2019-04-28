@@ -5,4 +5,43 @@ body {
     background-color: #fff;
     padding: 40px;
     box-sizing: border-box;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    font-size: 16px;
+}
+
+.perdita-textfield-filled {
+    border-bottom: 1px solid #444;
+    // display: inline-block;
+    background-color: #ddd;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    padding: 6px;
+}
+
+.perdita-textfield-filled > span {
+    display: block;
+    font-size: 10px;
+    user-select: none;
+    width: 100%;
+    color: #444;
+    transform-origin: left top;
+    transform: translateY(0px) scale(1);
+    transition: transform 0.25s;
+    user-select: none;
+}
+
+.perdita-textfield-filled > input {
+    outline: none;
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    width: 100%;
+}
+
+.perdita-textfield-filled.placeholder > span, .perdita-textfield-filled:focus > span {
+    transform: translateY(4px) scale(2);
 }
