@@ -24,11 +24,10 @@ class Main {
 		return div([CLASS("full-screen")], [
 			tooltip("Open ⌘ + O"),
 			div([STYLE({marginTop: "10px"})], [
-				textFieldFilled(UPDATE_TEXT, model.moneyField),
-				textFieldFilled(UPDATE_TEXT, model.moneyField),
-				textFieldFilled(UPDATE_TEXT, model.moneyField),
-				textFieldFilled(UPDATE_TEXT, model.moneyField),
-				textFieldFilled(UPDATE_TEXT, model.moneyField),
+				textFieldFilled(UPDATE_TEXT, model.moneyField)
+			]),
+			div([STYLE({marginTop: "10px"})], [
+				textFieldOutlined(UPDATE_TEXT, model.moneyField)
 			])
 		]);
 	}

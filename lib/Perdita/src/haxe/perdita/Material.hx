@@ -21,10 +21,12 @@ class Material
         ]);
     }
 
-    public static function textFieldOutlined<Model, Msg>(field :Textfield) :RenderFunction<Model, Msg>
+    public static function textFieldOutlined<Model, Msg>(msg :String -> Msg, field :Textfield) :RenderFunction<Model, Msg>
     {
-        return div([], [
-            input([])
+        var filledClass = field.value == "" ? "" : " filled";
+        return div([CLASS("perdita-textfield-outlined" + filledClass)], [
+            input([ON_INPUT(msg), VALUE(new String(field.value))]),
+            span([], field.label)
         ]);
     }
 }
