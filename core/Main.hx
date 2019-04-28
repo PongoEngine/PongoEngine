@@ -2,7 +2,6 @@ import towser.Architecture;
 import gen.model.GenModel;
 import gen.update.GenUpdate;
 import gen.view.GenView;
-import perdita.Perdita;
 
 class Main {
 	static function main() {
