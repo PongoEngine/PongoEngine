@@ -3,6 +3,7 @@ import towser.RenderFunction;
 import towser.Html.*;
 import perdita.Material.*;
 import perdita.model.Textfield;
+import perdita.model.Tab;
 
 class Main {
 	static function main() {
@@ -28,6 +29,9 @@ class Main {
 			]),
 			div([STYLE({marginTop: "10px"})], [
 				textFieldOutlined(UPDATE_TEXT, model.moneyField)
+			]),
+			div([STYLE({marginTop: "10px"})], [
+				for(tab in model.tabs) fixedTab(tab)
 			])
 		]);
 	}
@@ -44,10 +48,21 @@ class Main {
 class PongoModel
 {
 	public var moneyField :Textfield;
+	public var tabs :Array<Tab>;
 
 	public function new() : Void
 	{
 		this.moneyField = new Textfield("Money", "");
+		this.tabs = [
+			new Tab(false, "Apple"),
+			new Tab(false, "Pear"),
+			new Tab(false, "Orange"),
+			new Tab(false, "Carror"),
+			new Tab(false, "Blackberry"),
+			new Tab(false, "Mango"),
+			new Tab(false, "Grape"),
+			new Tab(false, "Celery")
+		];
 	}
 }
 
