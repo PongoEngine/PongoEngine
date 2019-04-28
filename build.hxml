@@ -1,4 +1,5 @@
 -cp lib/Iqua/src
+-cp lib/Perdita/src/haxe
 -cp core
 -D analyzer-optimize
 -main Main

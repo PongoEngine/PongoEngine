@@ -1,0 +1,17 @@
+.perdita-fade-in {
+  animation-duration: 0.5s;
+  animation-name: perdita-fade-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes perdita-fade-in {
+  from {
+    transform: translateY(0px) scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(10px) scale(1);
+    opacity: 1;
+  }
+}
