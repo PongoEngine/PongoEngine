@@ -14,10 +14,10 @@ class Material
 
     public static function textFieldFilled<Model, Msg>(msg :String -> Msg, field :Textfield) :RenderFunction<Model, Msg>
     {
-        var placeholderClass = field.value == "" ? " placeholder" : "";
-        return div([CLASS("perdita-textfield-filled" + placeholderClass)], [
-            span([], field.label),
-            input([ON_INPUT(msg), VALUE(new String(field.value))])
+        var filledClass = field.value == "" ? "" : " filled";
+        return div([CLASS("perdita-textfield-filled" + filledClass)], [
+            input([ON_INPUT(msg), VALUE(new String(field.value))]),
+            span([], field.label)
         ]);
     }
 

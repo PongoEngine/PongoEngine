@@ -15,33 +15,39 @@ body {
 
 .perdita-textfield-filled {
     border-bottom: 1px solid #444;
-    // display: inline-block;
     background-color: #ddd;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    padding: 6px;
+    position: relative;
 }
 
 .perdita-textfield-filled > span {
-    display: block;
-    font-size: 10px;
+    display: inline-block;
     user-select: none;
-    width: 100%;
     color: #444;
-    transform-origin: left top;
-    transform: translateY(0px) scale(1);
-    transition: transform 0.25s;
     user-select: none;
+    pointer-events: none;
+    position: absolute;
+    left: 6px;
+    font-size: 16px;
+    top: 10px;
 }
 
 .perdita-textfield-filled > input {
-    outline: none;
     border: none;
-    font-size: 16px;
     background-color: transparent;
+    font-size: 16px;
     width: 100%;
+    height: 100%;
+    padding: 15px 6px 3px 6px;
+    outline: none;
 }
 
-.perdita-textfield-filled.placeholder > span, .perdita-textfield-filled:focus > span {
-    transform: translateY(4px) scale(2);
+// .perdita-textfield-filled.placeholder > span, 
+
+
+.perdita-textfield-filled.filled > input + span,
+.perdita-textfield-filled > input:focus + span {
+    font-size: 10px;
+    top: 5px;
 }
