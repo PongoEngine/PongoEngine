@@ -1,4 +1,4 @@
-package gen.view.components;
+package perdita.view;
 
 import towser.Html.*;
 import gen.update.GenMsg;
@@ -10,7 +10,7 @@ import gen.model.FloatingWindow;
 import gen.model.WindowContent;
 import towser.RenderFunction;
 
-class Progress
+class SelectionControl
 {
-
+    
 }
