@@ -35,6 +35,7 @@ class GenUpdate {
 				model.stretchableColumn = column;
 				true;
 			case ToggleButton(button):
+				model.bottom.isOpen = button.isActive;
 				button.isActive = !button.isActive;
 				true;
 			case TextInput(text, str):
@@ -58,12 +59,10 @@ class GenUpdate {
 		var mY = y - activePoint.y;
 		activePoint.update(x, y);
 		if(window.isUpdatingWidth) {
-			window.dimensions.x += mX;
-			window.dimensions.y += mY;
+			window.resizeTo(x, y);
 		}
 		else {
-			window.position.x += mX;
-			window.position.y += mY;
+			window.moveBy(mX, mY);
 		}
 	}
 

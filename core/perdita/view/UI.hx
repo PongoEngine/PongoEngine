@@ -1,17 +1,17 @@
-package gen.view;
+package perdita.view;
 
 import towser.Html.*;
-import gen.update.GenMsg;
-import gen.model.GenModel;
-import gen.model.Column;
-import gen.model.Button;
-import gen.model.Text;
-import gen.model.FloatingWindow;
-import gen.model.WindowContent;
+import perdita.update.PerditaMsg;
+import perdita.model.PerditaModel;
+import perdita.model.Column;
+import perdita.model.Button;
+import perdita.model.Text;
+import perdita.model.FloatingWindow;
+import perdita.model.WindowContent;
 import towser.RenderFunction;
 
 class UI {
-    public static function collapsingWindow(window :WindowContent, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
+    public static function collapsingWindow(window :WindowContent, children :Array<RenderFunction<PerditaMsg, PerditaMsg>>) : RenderFunction<PerditaMsg, PerditaMsg> 
     {
         var heightClass = window.isOpen ? " open" : "";
         var arrow = window.isOpen ? "▼ " : "▶ ";
@@ -25,7 +25,7 @@ class UI {
         return div([CLASS("collapse color-container-lighter border-bottom" + heightClass)], content);
     }
 
-    public static function column(column :Column, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
+    public static function column(column :Column, children :Array<RenderFunction<PerditaMsg, PerditaMsg>>) : RenderFunction<PerditaMsg, PerditaMsg> 
     {
         var openClass = column.isOpen ? " open" : " closed";
         var content = column.isOpen 
@@ -46,19 +46,19 @@ class UI {
         return div([CLASS("column color-container flex-row border-right border-left" + openClass + leftClass), STYLE({width: column.width + "px"})], innerConent);
     }
 
-    public static function bottom(bottom :WindowContent, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
+    public static function bottom(bottom :WindowContent, children :Array<RenderFunction<PerditaMsg, PerditaMsg>>) : RenderFunction<PerditaMsg, PerditaMsg> 
     {
         var openClass = bottom.isOpen ? " open" : " closed";
         return div([CLASS("bottom-row border-top" + openClass), ID("bottom")], [collapsingWindow(bottom, children)]);
     }
 
-    public static function pushButton(button :Button, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
+    public static function pushButton(button :Button, children :Array<RenderFunction<PerditaMsg, PerditaMsg>>) : RenderFunction<PerditaMsg, PerditaMsg> 
     {
         var activeClass = button.isActive ? " active" : "";
         return div([CLASS("button color-actionable" + activeClass), ON_CLICK(ToggleButton(button))], children);
     }
 
-    public static function inputText(text :Text) : RenderFunction<GenModel, GenMsg> 
+    public static function inputText(text :Text) : RenderFunction<PerditaMsg, PerditaMsg> 
     {
         return input([
             CLASS("input-text color-actionable"), 
@@ -67,7 +67,7 @@ class UI {
         ]);
     }
 
-    public static function floater(floatingWindow :FloatingWindow, children :Array<RenderFunction<GenModel, GenMsg>>) : RenderFunction<GenModel, GenMsg> 
+    public static function floater(floatingWindow :FloatingWindow, children :Array<RenderFunction<PerditaMsg, PerditaMsg>>) : RenderFunction<PerditaMsg, PerditaMsg> 
     {
         return div([
             CLASS("hover-window color-container"), 

@@ -1,4 +1,4 @@
-package gen.model;
+package perdita.model;
 
 import js.Browser.window;
 
