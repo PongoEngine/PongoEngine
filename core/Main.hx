@@ -46,8 +46,21 @@ class Main {
 			]),
 			div([STYLE({marginTop: "10px"})], [
 				sliderDiscrete(SLIDER_CHANGE, 0, 200, 10)
-			])
+			]),
+			// div([STYLE({marginTop: "10px"})], [
+			// 	sheetSide(false, content("Right side", 40))
+			// ]),
+			// div([STYLE({marginTop: "10px"})], [
+			// 	sheetSide(true, content("Right side", 40))
+			// ])
 		]);
+	}
+
+	public static function content(title :String, lines : Int) : Array<RenderFunction<PongoModel, PongoMsg>>
+	{
+		return [
+			h1([], title)
+		].concat([for(i in 0...lines) h4([], "Hello content")]);
 	}
 
 	public static function update(msg:PongoMsg, model:PongoModel):Bool {

@@ -3,6 +3,7 @@
 @import "./animation";
 @import "./tab";
 @import "./snackbar";
+@import "./slider";
 
 body {
   background-color: #fff;
@@ -16,6 +17,20 @@ body {
   font-size: 16px;
 }
 
-.m-slider-continuous {
-  width: 100%;
+.m-sheet-side {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 300px;
+  background-color: #ccc;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.m-sheet-side.left {
+  left: 0px;
+}
+
+.m-sheet-side.right {
+  right: 0px;
 }

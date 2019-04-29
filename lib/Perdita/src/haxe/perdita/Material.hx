@@ -8,6 +8,13 @@ import perdita.model.Tab;
 
 class Material
 {
+    //------------ SHEETS -----------
+    public static function sheetSide<Model, Msg>(isLeft :Bool, children :Array<RenderFunction<Model, Msg>>) :RenderFunction<Model, Msg>
+    {
+        var posClass = isLeft ? " left" : " right";
+        return div([CLASS("m-sheet-side" + posClass)], children);
+    }
+
 
     //------------ SLIDERS -----------
     public static function sliderContinuous<Model, Msg>(msg :String -> Msg, min :Int, max :Int) :RenderFunction<Model, Msg>
