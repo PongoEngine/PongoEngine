@@ -30,8 +30,10 @@ class Main {
 				])])
 			]),
 			div([], [for (f in model.floaters) floater(SelectWindow, f, [
-				textFieldOutlined(TextInput.bind(model.text), model.text),
-				textFieldOutlined(TextInput.bind(model.text2), model.text2)
+				div([STYLE({margin: "2px"})], [
+					textFieldOutlined(TextInput.bind(model.text), model.text),
+					textFieldOutlined(TextInput.bind(model.text2), model.text2)
+				])
 			])])
 		]);
 	}

@@ -1,6 +1,7 @@
 package perdita;
 
 import towser.Html.*;
+import towser.Attribute;
 import towser.RenderFunction;
 import perdita.model.Textfield;
 import perdita.model.WindowContent;
@@ -63,15 +64,6 @@ class Perdita
     {
         var activeClass = button.isActive ? " active" : "";
         return div([CLASS("button color-actionable" + activeClass), ON_CLICK(toggleButton(button))], children);
-    }
-
-    public static function inputText<Model, Msg>(textInput :Text -> String -> Msg, text :Text) : RenderFunction<Model, Msg> 
-    {
-        return input([
-            CLASS("input-text color-actionable"), 
-            VALUE(text.data), 
-            ON_INPUT(textInput.bind(text))
-        ]);
     }
 
     public static function floater<Model, Msg>(selectWindow :FloatingWindow -> Bool -> MouseEvent -> Msg, floatingWindow :FloatingWindow, children :Array<RenderFunction<Model, Msg>>) : RenderFunction<Model, Msg> 

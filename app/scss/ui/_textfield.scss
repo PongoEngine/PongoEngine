@@ -14,9 +14,9 @@
     user-select: none;
     pointer-events: none;
     position: absolute;
-    left: 1px;
+    left: 4px;
     font-size: 16px;
-    top: 10px;
+    top: 16px;
 }
 
 .m-textfield-outlined > input {
@@ -27,6 +27,9 @@
     height: 100%;
     padding: 7px 10px 9px 4px;
     outline: none;
+    line-height: 12px;
+    display: inline-block;
+    padding-top: 20px;
 }
 
 .m-textfield-outlined.filled > input + span,
@@ -39,4 +42,5 @@
     border-radius: 3px;
     background-color: #666;
     color: #000;
+    left: 1px;
 }
