@@ -1,6 +1,7 @@
 package perdita;
 
 import towser.Html.*;
+import towser.Svg.*;
 import towser.Attribute;
 import towser.RenderFunction;
 import perdita.model.Textfield;
@@ -8,11 +9,29 @@ import perdita.model.Tab;
 
 class Material
 {
+    //------------ PROGRESS -----------
+    public static function progressLinear<Model, Msg>() :RenderFunction<Model, Msg>
+    {
+        return div([CLASS("m-progress-linear")], []);
+    }
+
+    public static function progressCircular<Model, Msg>() :RenderFunction<Model, Msg>
+    {
+        return svg([CLASS("m-progress-circular")], [
+            circle([CLASS("m-progress-circular-path"), CX("50"), CY("50"), R("20"), FILL("none"), STROKE_WIDTH("3"), STROKE_MITER_LIMIT("10")])
+        ]);
+    }
+
     //------------ SHEETS -----------
     public static function sheetSide<Model, Msg>(isLeft :Bool, children :Array<RenderFunction<Model, Msg>>) :RenderFunction<Model, Msg>
     {
         var posClass = isLeft ? " left" : " right";
         return div([CLASS("m-sheet-side" + posClass)], children);
+    }
+
+    public static function sheetBottom<Model, Msg>(children :Array<RenderFunction<Model, Msg>>) :RenderFunction<Model, Msg>
+    {
+        return div([CLASS("m-sheet-bottom")], children);
     }
 
 

@@ -52,7 +52,14 @@ class Main {
 			// ]),
 			// div([STYLE({marginTop: "10px"})], [
 			// 	sheetSide(true, content("Right side", 40))
-			// ])
+			// ]),
+			// div([STYLE({marginTop: "10px"})], [
+			// 	sheetBottom(content("Bottom", 40))
+			// ]),
+			div([STYLE({marginTop: "10px"})], [
+				progressCircular()
+			]),
+
 		]);
 	}
 

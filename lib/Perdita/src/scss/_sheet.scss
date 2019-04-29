@@ -1,0 +1,28 @@
+.m-sheet-side {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 300px;
+  background-color: #ccc;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.m-sheet-side.left {
+  left: 0px;
+}
+
+.m-sheet-side.right {
+  right: 0px;
+}
+
+.m-sheet-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 300px;
+  width: 100%;
+  background-color: #ccc;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
