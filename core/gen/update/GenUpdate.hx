@@ -1,8 +1,8 @@
 package gen.update;
 
 import gen.model.GenModel;
-import gen.model.Point;
-import gen.model.FloatingWindow;
+import perdita.model.Point;
+import perdita.model.FloatingWindow;
 
 class GenUpdate {
 	public static function update(msg:GenMsg, model:GenModel):Bool {

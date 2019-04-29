@@ -1,5 +1,12 @@
 package gen.model;
 
+import perdita.model.FloatingWindow;
+import perdita.model.Column;
+import perdita.model.WindowContent;
+import perdita.model.Button;
+import perdita.model.Point;
+import perdita.model.Text;
+
 class GenModel 
 {
 	public var columnLeft :Column;

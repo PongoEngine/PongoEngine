@@ -1,10 +1,10 @@
 package gen.update;
 
-import gen.model.FloatingWindow;
-import gen.model.Column;
-import gen.model.Button;
-import gen.model.WindowContent;
-import gen.model.Text;
+import perdita.model.FloatingWindow;
+import perdita.model.Column;
+import perdita.model.Button;
+import perdita.model.WindowContent;
+import perdita.model.Text;
 import js.html.MouseEvent;
 
 enum GenMsg {
