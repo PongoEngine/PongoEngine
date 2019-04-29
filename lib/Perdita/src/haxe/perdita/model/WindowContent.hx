@@ -10,4 +10,10 @@ class WindowContent
 		this.title = title;
 		this.isOpen = true;
 	}
+
+	public function toggle() : Bool
+	{
+		this.isOpen = !this.isOpen;
+		return true;
+	}
 }

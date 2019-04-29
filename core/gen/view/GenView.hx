@@ -19,11 +19,7 @@ class GenView {
 					inputText(TextInput, model.text)
 				])]),
 				div([CLASS("woah flex-column")], [
-					div([CLASS("game-window")], []),
-					// bottom(model.bottom, [
-					// 	pushButton(model.button2, [p([], "Hello")]),
-					// 	inputText(model.text)
-					// ])
+					div([CLASS("game-window")], [])
 				]),
 				column(StretchColumn, ToggleColumn, model.columnRight ,[for (window in model.columnRight.windows) collapsingWindow(ToggleWindow, window, [
 

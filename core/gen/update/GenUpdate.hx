@@ -2,22 +2,25 @@ package gen.update;
 
 import gen.model.GenModel;
 import perdita.model.Point;
+import perdita.model.Column;
 import perdita.model.FloatingWindow;
 
 class GenUpdate {
 	public static function update(msg:GenMsg, model:GenModel):Bool {
 		return switch msg {
 			case ToggleWindow(window):
-				window.isOpen = !window.isOpen;
-				true;
+				window.toggle();
 			case ToggleColumn(column):
 				column.toggleColumn();
-				true;
 			case GlobalMove(e):
 				if(model.selectedFloater != null) {
 					moveFloater(model.activePoint, model.selectedFloater, e.pageX, e.pageY);
 				}
-				stretchColumn(model, e.pageX, e.pageY);
+				var mX = e.pageX - model.activePoint.x;
+				model.activePoint.update(e.pageX, e.pageY);
+				if(model.stretchableColumn != null) {
+					model.stretchableColumn.stretchBy(mX);
+				}
 				true;
 			case GlobalUp(e):
 				if(model.selectedFloater != null) {
@@ -64,22 +67,6 @@ class GenUpdate {
 		else {
 			window.moveBy(mX, mY);
 		}
-	}
-
-	public static inline function stretchColumn(model:GenModel, x :Int, y :Int) : Bool
-	{
-		if(model.stretchableColumn != null) {
-			var mX = x - model.activePoint.x;
-			model.activePoint.update(x, y);
-
-			var success = model.stretchableColumn.stretchBy(mX);
-			if(!success) {
-				model.stretchableColumn.isActive = false;
-				model.stretchableColumn = null;
-			}
-			return true;
-		}
-		return false;
 	}
 
 	public static inline function checkForColumn(model:GenModel) : Bool

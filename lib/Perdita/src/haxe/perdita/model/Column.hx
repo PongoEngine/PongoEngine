@@ -23,11 +23,7 @@ class Column
 		this.width += dist;
 		this.isOpen = true;
 
-		if(this.width > MAX_WIDTH) {
-			this.width = MAX_WIDTH;
-			return false;
-		}
-		else if(this.width < COLLAPSING_WIDTH) {
+		if(this.width < COLLAPSING_WIDTH) {
 			this.isOpen = false;
 		}
 		return true;
@@ -40,19 +36,19 @@ class Column
 		}
 	}
 
-	public function toggleColumn() : Void
+	public function toggleColumn() : Bool
 	{
 		if(this.isOpen) {
 			this.width = MIN_WIDTH;
 			this.isOpen = false;
 		}
 		else {
-			this.width = MAX_WIDTH;
+			this.width = 400;
 			this.isOpen = true;
 		}
+		return true;
 	}
 
 	public static inline var MIN_WIDTH :Int = 16;
-	public static inline var MAX_WIDTH :Int = 600;
 	public static inline var COLLAPSING_WIDTH :Int = 120;
 }
