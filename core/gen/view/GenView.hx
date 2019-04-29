@@ -2,7 +2,7 @@ package gen.view;
 
 import towser.Html.*;
 import towser.RenderFunction;
-import gen.update.GenMsg;
+import gen.update.GenUpdate;
 import gen.model.GenModel;
 import perdita.Perdita.*;
 

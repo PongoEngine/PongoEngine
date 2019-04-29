@@ -1,9 +1,13 @@
 package gen.update;
 
-import gen.model.GenModel;
-import perdita.model.Point;
-import perdita.model.Column;
 import perdita.model.FloatingWindow;
+import perdita.model.Column;
+import perdita.model.Button;
+import perdita.model.WindowContent;
+import perdita.model.Text;
+import perdita.model.Point;
+import gen.model.GenModel;
+import js.html.MouseEvent;
 
 class GenUpdate {
 	public static function update(msg:GenMsg, model:GenModel):Bool {
@@ -79,4 +83,16 @@ class GenUpdate {
 		}
 		return false;
 	}
+}
+
+enum GenMsg {
+	ToggleWindow(window :WindowContent);
+	ToggleColumn(column :Column);
+	ToggleButton(button :Button);
+	TextInput(data :Text, str :String);
+	GlobalMove(e :MouseEvent);
+	GlobalUp(e :MouseEvent);
+	GlobalDown(e :MouseEvent);
+	StretchColumn(data:Column, e :MouseEvent);
+	SelectWindow(data:FloatingWindow, updateDimensions :Bool, e:MouseEvent);
 }
