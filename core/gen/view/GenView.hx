@@ -15,7 +15,8 @@ class GenView {
 			]),
 			div([CLASS("main-content flex-row")], [
 				column(StretchColumn, ToggleColumn, model.columnLeft ,[for (window in model.columnLeft.windows) collapsingWindow(ToggleWindow, window, [
-
+					pushButton(ToggleButton, model.button2, [p([], "Hello")]),
+					inputText(TextInput, model.text)
 				])]),
 				div([CLASS("woah flex-column")], [
 					div([CLASS("game-window")], []),
