@@ -36,17 +36,16 @@ class Column
 		}
 	}
 
-	public function toggleColumn() : Bool
+	public function close() : Void
 	{
-		if(this.isOpen) {
-			this.width = MIN_WIDTH;
-			this.isOpen = false;
-		}
-		else {
-			this.width = 400;
-			this.isOpen = true;
-		}
-		return true;
+		this.width = MIN_WIDTH;
+		this.isOpen = false;
+	}
+
+	public function open(width :Int) : Void
+	{
+		this.width = width;
+		this.isOpen = true;
 	}
 
 	public static inline var MIN_WIDTH :Int = 16;

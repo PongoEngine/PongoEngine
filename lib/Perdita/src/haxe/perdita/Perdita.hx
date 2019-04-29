@@ -53,7 +53,10 @@ class Perdita
             innerConent.reverse();
         }
 
-        return div([CLASS("column color-container flex-row border-right border-left" + openClass + leftClass), STYLE({width: column.width + "px"})], innerConent);
+        return div([
+            CLASS("column color-container flex-row border-right border-left" + openClass + leftClass), 
+            STYLE({width: column.width + "px"})
+        ], innerConent);
     }
 
     public static function pushButton<Model, Msg>(toggleButton :Button -> Msg, button :Button, children :Array<RenderFunction<Model, Msg>>) : RenderFunction<Model, Msg> 

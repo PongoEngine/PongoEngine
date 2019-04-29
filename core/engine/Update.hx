@@ -1,21 +1,35 @@
-package gen.update;
+package engine;
 
+import perdita.model.Textfield;
 import perdita.model.FloatingWindow;
 import perdita.model.Column;
 import perdita.model.Button;
 import perdita.model.WindowContent;
 import perdita.model.Text;
 import perdita.model.Point;
-import gen.model.GenModel;
+import engine.Model;
 import js.html.MouseEvent;
 
-class GenUpdate {
-	public static function update(msg:GenMsg, model:GenModel):Bool {
+class Update {
+	public static function update(msg:GenMsg, model:Model):Bool {
 		return switch msg {
+			case ResizeColumn(column, e):
+				trace(e);
+				if(!column.isActive) {
+					trace(e);
+				}
+				// if(column.)
+				true;
 			case ToggleWindow(window):
 				window.toggle();
 			case ToggleColumn(column):
-				column.toggleColumn();
+				if(column.isOpen) {
+					column.close();
+				}
+				else {
+					column.open(300);
+				}
+				true;
 			case GlobalMove(e):
 				if(model.selectedFloater != null) {
 					moveFloater(model.activePoint, model.selectedFloater, e.pageX, e.pageY);
@@ -46,7 +60,7 @@ class GenUpdate {
 				button.isActive = !button.isActive;
 				true;
 			case TextInput(text, str):
-				text.data = str;
+				text.value = str;
 				true;
 			case SelectWindow(window, updateDimensions, e):
 				e.stopPropagation();
@@ -73,7 +87,7 @@ class GenUpdate {
 		}
 	}
 
-	public static inline function checkForColumn(model:GenModel) : Bool
+	public static inline function checkForColumn(model:Model) : Bool
 	{
 		if(model.stretchableColumn != null) {
 			model.stretchableColumn.checkWidth();
@@ -88,8 +102,9 @@ class GenUpdate {
 enum GenMsg {
 	ToggleWindow(window :WindowContent);
 	ToggleColumn(column :Column);
+	ResizeColumn(column :Column, val:Dynamic);
 	ToggleButton(button :Button);
-	TextInput(data :Text, str :String);
+	TextInput(data :Textfield, str :String);
 	GlobalMove(e :MouseEvent);
 	GlobalUp(e :MouseEvent);
 	GlobalDown(e :MouseEvent);
