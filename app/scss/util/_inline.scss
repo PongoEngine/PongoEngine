@@ -35,3 +35,7 @@
   align-items: stretch;
   width: 100%;
 }
+
+.disable-user-select {
+  user-select: none;
+}

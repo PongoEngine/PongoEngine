@@ -1,6 +1,7 @@
 package perdita;
 
 import towser.Html.*;
+import towser.Html;
 import towser.Attribute;
 import towser.RenderFunction;
 import perdita.model.Textfield;
@@ -13,11 +14,11 @@ import js.html.MouseEvent;
 
 class Perdita
 {
-    public static function textFieldOutlined<Model, Msg>(msg :String -> Msg, field :Textfield) :RenderFunction<Model, Msg>
+    public static function textFieldOutlined<Model, Msg>(msg :Textfield -> String -> Msg, field :Textfield) :RenderFunction<Model, Msg>
     {
         var filledClass = field.value == "" ? "" : " filled";
         return div([CLASS("m-textfield-outlined" + filledClass)], [
-            input([ON_INPUT(msg), VALUE(new String(field.value))]),
+            input([ON_INPUT(msg.bind(field)), VALUE(new String(field.value))]),
             span([], field.label)
         ]);
     }
@@ -63,7 +64,7 @@ class Perdita
     public static function pushButton<Model, Msg>(toggleButton :Button -> Msg, button :Button, children :Array<RenderFunction<Model, Msg>>) : RenderFunction<Model, Msg> 
     {
         var activeClass = button.isActive ? " active" : "";
-        return div([CLASS("button color-actionable" + activeClass), ON_CLICK(toggleButton(button))], children);
+        return Html.button([CLASS("button color-actionable" + activeClass), ON_CLICK(toggleButton(button))], children);
     }
 
     public static function floater<Model, Msg>(selectWindow :FloatingWindow -> Bool -> MouseEvent -> Msg, floatingWindow :FloatingWindow, children :Array<RenderFunction<Model, Msg>>) : RenderFunction<Model, Msg> 

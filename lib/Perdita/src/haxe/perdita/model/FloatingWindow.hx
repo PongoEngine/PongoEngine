@@ -10,8 +10,8 @@ class FloatingWindow
 
 	public function new() : Void
 	{
-        this.position = new Point();
-        this.dimensions = new Point(300, 300);
+        this.position = new Point(400, 100);
+        this.dimensions = new Point(900, 700);
         this.isUpdatingWidth = false;
 	}
 

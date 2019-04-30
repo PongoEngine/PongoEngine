@@ -14,9 +14,9 @@ class Main {
 
 	public static function view(model:Model) : RenderFunction<Model, GenMsg>
 	{
-		return div([CLASS("full-screen"), MOUSE_DOWN(GlobalDown), MOUSE_UP(GlobalUp), MOUSE_MOVE(GlobalMove)], [
+		var disableSelect = model.selectedFloater != null ? " disable-user-select" : "";
+		return div([CLASS("full-screen" + disableSelect), MOUSE_DOWN(GlobalDown), MOUSE_UP(GlobalUp), MOUSE_MOVE(GlobalMove)], [
 			div([CLASS("nav-bar color-container-darker border-bottom")], [
-				pushButton(ToggleButton, model.button1, [p([], "Hello")])
 			]),
 			div([CLASS("main-content flex-row")], [
 				column(StretchColumn, ToggleColumn, model.columnLeft ,[for (window in model.columnLeft.windows) collapsingWindow(ToggleWindow, window, [
@@ -31,8 +31,10 @@ class Main {
 			]),
 			div([], [for (f in model.floaters) floater(SelectWindow, f, [
 				div([STYLE({margin: "2px"})], [
-					textFieldOutlined(TextInput.bind(model.text), model.text),
-					textFieldOutlined(TextInput.bind(model.text2), model.text2)
+					textFieldOutlined(TextInput, model.text),
+					textFieldOutlined(TextInput, model.text2),
+					pushButton(ToggleButton, model.button1, [p([], "Hello")]),
+					pushButton(ToggleButton, model.button2, [p([], "Goodbye")])
 				])
 			])])
 		]);
