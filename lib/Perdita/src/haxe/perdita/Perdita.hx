@@ -67,6 +67,14 @@ class Perdita
         return Html.button([CLASS("button color-actionable" + activeClass), ON_CLICK(toggleButton(button))], children);
     }
 
+    public static function toggle<Model, Msg>(toggleButton :Button -> Msg, button :Button) : RenderFunction<Model, Msg> 
+    {
+        return label([CLASS("switch")], [
+            input([TYPE("checkbox")]),
+            span([CLASS("slider round")],"")
+        ]);
+    }
+
     public static function floater<Model, Msg>(selectWindow :FloatingWindow -> Bool -> MouseEvent -> Msg, floatingWindow :FloatingWindow, children :Array<RenderFunction<Model, Msg>>) : RenderFunction<Model, Msg> 
     {
         return div([

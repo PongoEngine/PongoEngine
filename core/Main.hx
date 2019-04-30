@@ -34,7 +34,8 @@ class Main {
 					textFieldOutlined(TextInput, model.text),
 					textFieldOutlined(TextInput, model.text2),
 					pushButton(ToggleButton, model.button1, [p([], "Hello")]),
-					pushButton(ToggleButton, model.button2, [p([], "Goodbye")])
+					pushButton(ToggleButton, model.button2, [p([], "Goodbye")]),
+					toggle(ToggleButton, model.button2)
 				])
 			])])
 		]);
