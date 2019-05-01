@@ -1,3 +1,6 @@
 [submodule "lib/Perdita"]
 	path = lib/Perdita
 	url = https://github.com/PongoEngine/Perdita
+[submodule "lib/Towser"]
+	path = lib/Towser
+	url = https://github.com/PongoEngine/Towser
