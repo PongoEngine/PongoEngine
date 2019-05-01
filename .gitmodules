@@ -1,3 +1,6 @@
 [submodule "lib/Iqua"]
 	path = lib/Iqua
 	url = https://github.com/PongoEngine/Iqua
+[submodule "lib/Perdita"]
+	path = lib/Perdita
+	url = https://github.com/PongoEngine/Perdita
