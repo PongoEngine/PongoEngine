@@ -33,9 +33,14 @@ class Main {
 				div([STYLE({margin: "2px"})], [
 					textFieldOutlined(TextInput, model.text),
 					textFieldOutlined(TextInput, model.text2),
-					pushButton(ToggleButton, model.button1, [p([], "Hello")]),
-					pushButton(ToggleButton, model.button2, [p([], "Goodbye")]),
-					toggle(ToggleButton, model.button2)
+					div([], [
+						p([], "Hello"),
+						toggle(ToggleButton, model.button1)
+					]),
+					div([], [
+						p([], "Goodbye"),
+						toggle(ToggleButton, model.button2)
+					])
 				])
 			])])
 		]);

@@ -61,17 +61,11 @@ class Perdita
         ], innerConent);
     }
 
-    public static function pushButton<Model, Msg>(toggleButton :Button -> Msg, button :Button, children :Array<RenderFunction<Model, Msg>>) : RenderFunction<Model, Msg> 
-    {
-        var activeClass = button.isActive ? " active" : "";
-        return Html.button([CLASS("button color-actionable" + activeClass), ON_CLICK(toggleButton(button))], children);
-    }
-
     public static function toggle<Model, Msg>(toggleButton :Button -> Msg, button :Button) : RenderFunction<Model, Msg> 
     {
         return label([CLASS("switch")], [
             input([TYPE("checkbox")]),
-            span([CLASS("slider round")],"")
+            span([],"")
         ]);
     }
 
