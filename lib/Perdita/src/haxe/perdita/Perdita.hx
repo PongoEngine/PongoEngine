@@ -63,8 +63,12 @@ class Perdita
 
     public static function toggle<Model, Msg>(toggleButton :Button -> Msg, button :Button) : RenderFunction<Model, Msg> 
     {
+        var attrs = [TYPE("checkbox")];
+        if(button.isActive) {
+            attrs.push(ATTR("checked", true));
+        }
         return label([CLASS("switch")], [
-            input([TYPE("checkbox")]),
+            input(attrs),
             span([],"")
         ]);
     }
