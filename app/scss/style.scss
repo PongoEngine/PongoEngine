@@ -1,1 +1,25 @@
-@import "../../lib/Perdita/src/scss/perdita.scss"
+@import "../../lib/Perdita/src/scss/perdita.scss";
+
+.game-window {
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/pattern.png');
+  flex-shrink: 2;
+}
+
+$nav-height: 50px;
+
+.nav-bar {
+  height: $nav-height;
+  width: 100%;
+}
+
+.main-content {
+  height: calc(100% - #{$nav-height});
+  width: 100%;
+}
+
+.woah {
+  width: 100%;
+  height: 100%;
+}
