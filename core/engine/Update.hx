@@ -1,12 +1,11 @@
 package engine;
 
 import perdita.model.Textfield;
-import perdita.model.FloatingWindow;
+import perdita.model.Window;
 import perdita.model.Drawer;
-import perdita.model.Button;
-import perdita.model.WindowContent;
-import perdita.model.Text;
-import perdita.model.Point;
+import perdita.model.Toggle;
+import perdita.model.AccordianItem;
+import perdita.model.util.Point;
 import engine.Model;
 import js.html.MouseEvent;
 
@@ -56,7 +55,6 @@ class Update {
 				model.stretchableColumn = column;
 				true;
 			case ToggleButton(button):
-				model.bottom.isOpen = button.isActive;
 				button.isActive = !button.isActive;
 				true;
 			case TextInput(text, str):
@@ -74,7 +72,7 @@ class Update {
 		}
 	}
 
-	public static inline function moveFloater(activePoint :Point, window:FloatingWindow, x :Int, y :Int) : Void
+	public static inline function moveFloater(activePoint :Point, window:Window, x :Int, y :Int) : Void
 	{
 		var mX = x - activePoint.x;
 		var mY = y - activePoint.y;
@@ -100,14 +98,14 @@ class Update {
 }
 
 enum GenMsg {
-	ToggleWindow(window :WindowContent);
+	ToggleWindow(window :AccordianItem);
 	ToggleColumn(column :Drawer);
 	ResizeColumn(column :Drawer, val:Dynamic);
-	ToggleButton(button :Button);
+	ToggleButton(button :Toggle);
 	TextInput(data :Textfield, str :String);
 	GlobalMove(e :MouseEvent);
 	GlobalUp(e :MouseEvent);
 	GlobalDown(e :MouseEvent);
 	StretchColumn(data:Drawer, e :MouseEvent);
-	SelectWindow(data:FloatingWindow, updateDimensions :Bool, e:MouseEvent);
+	SelectWindow(data:Window, updateDimensions :Bool, e:MouseEvent);
 }

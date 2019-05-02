@@ -19,7 +19,7 @@ class Main {
 			div([CLASS("nav-bar color-container-darker border-bottom")], [
 			]),
 			div([CLASS("main-content flex-row")], [
-				drawer(StretchColumn, ToggleColumn, model.columnLeft, [for (window in model.windows) collapsingWindow(ToggleWindow, window, [
+				drawer(StretchColumn, ToggleColumn, model.columnLeft, [for (window in model.windows) accordianItem(ToggleWindow, window, [
 					
 				])]),
 				div([CLASS("woah flex-column")], [
@@ -27,10 +27,10 @@ class Main {
 				]),
 				drawer(StretchColumn, ToggleColumn, model.columnRight , [])
 			]),
-			div([], [for (f in model.floaters) floater(SelectWindow, f, [
+			div([], [for (f in model.floaters) window(SelectWindow, f, [
 				div([STYLE({margin: "2px"})], [
-					textFieldOutlined(TextInput, model.text),
-					textFieldOutlined(TextInput, model.text2),
+					textfield(TextInput, model.text),
+					textfield(TextInput, model.text2),
 					div([], [
 						p([], "Hello"),
 						toggle(ToggleButton, model.button1)
