@@ -11,14 +11,12 @@ import js.html.MouseEvent;
 
 class Update {
 	public static function update(msg:GenMsg, model:Model):Bool {
-		return switch msg {
+		switch msg {
 			case ResizeColumn(column, e):
 				trace(e);
 				if(!column.isActive) {
 					trace(e);
 				}
-				// if(column.)
-				true;
 			case ToggleWindow(window):
 				window.toggle();
 			case ToggleColumn(column):
@@ -28,7 +26,6 @@ class Update {
 				else {
 					column.open(300);
 				}
-				true;
 			case GlobalMove(e):
 				if(model.selectedFloater != null) {
 					moveFloater(model.activePoint, model.selectedFloater, e.pageX, e.pageY);
@@ -38,7 +35,6 @@ class Update {
 				if(model.stretchableColumn != null) {
 					model.stretchableColumn.stretchBy(mX);
 				}
-				true;
 			case GlobalUp(e):
 				if(model.selectedFloater != null) {
 					model.selectedFloater.isUpdatingWidth = false;
@@ -46,20 +42,15 @@ class Update {
 				}
 				model.activePoint.update(e.pageX, e.pageY);
 				checkForColumn(model);
-				true;
 			case GlobalDown(e):
 				model.activePoint.update(e.pageX, e.pageY);
-				true;
 			case StretchColumn(column,e):
 				column.isActive = true;
 				model.stretchableColumn = column;
-				true;
 			case ToggleButton(button):
 				button.isActive = !button.isActive;
-				true;
 			case TextInput(text, str):
 				text.value = str;
-				true;
 			case SelectWindow(window, updateDimensions, e):
 				e.stopPropagation();
 				model.activePoint.update(e.pageX, e.pageY);
@@ -68,8 +59,8 @@ class Update {
 
 				model.floaters.remove(window);
 				model.floaters.push(window);
-				true;
 		}
+		return true;
 	}
 
 	public static inline function moveFloater(activePoint :Point, window:Window, x :Int, y :Int) : Void
