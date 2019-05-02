@@ -19,15 +19,13 @@ class Main {
 			div([CLASS("nav-bar color-container-darker border-bottom")], [
 			]),
 			div([CLASS("main-content flex-row")], [
-				column(StretchColumn, ToggleColumn, model.columnLeft ,[for (window in model.columnLeft.windows) collapsingWindow(ToggleWindow, window, [
+				drawer(StretchColumn, ToggleColumn, model.columnLeft, [for (window in model.windows) collapsingWindow(ToggleWindow, window, [
 					
 				])]),
 				div([CLASS("woah flex-column")], [
 					div([CLASS("game-window")], [])
 				]),
-				column(StretchColumn, ToggleColumn, model.columnRight ,[for (window in model.columnRight.windows) collapsingWindow(ToggleWindow, window, [
-
-				])])
+				drawer(StretchColumn, ToggleColumn, model.columnRight , [])
 			]),
 			div([], [for (f in model.floaters) floater(SelectWindow, f, [
 				div([STYLE({margin: "2px"})], [

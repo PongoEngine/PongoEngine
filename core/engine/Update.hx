@@ -2,7 +2,7 @@ package engine;
 
 import perdita.model.Textfield;
 import perdita.model.FloatingWindow;
-import perdita.model.Column;
+import perdita.model.Drawer;
 import perdita.model.Button;
 import perdita.model.WindowContent;
 import perdita.model.Text;
@@ -101,13 +101,13 @@ class Update {
 
 enum GenMsg {
 	ToggleWindow(window :WindowContent);
-	ToggleColumn(column :Column);
-	ResizeColumn(column :Column, val:Dynamic);
+	ToggleColumn(column :Drawer);
+	ResizeColumn(column :Drawer, val:Dynamic);
 	ToggleButton(button :Button);
 	TextInput(data :Textfield, str :String);
 	GlobalMove(e :MouseEvent);
 	GlobalUp(e :MouseEvent);
 	GlobalDown(e :MouseEvent);
-	StretchColumn(data:Column, e :MouseEvent);
+	StretchColumn(data:Drawer, e :MouseEvent);
 	SelectWindow(data:FloatingWindow, updateDimensions :Bool, e:MouseEvent);
 }
