@@ -1,4 +1,4 @@
-import towser.Architecture;
+import towser.architecture.Architecture;
 import towser.Html.*;
 import towser.RenderFunction;
 import engine.Model;
@@ -8,7 +8,8 @@ import perdita.Perdita.*;
 
 class Main {
 	static function main() {
-		new Architecture("app", update, view, new Model());
+		var arch = new Architecture("app", update, view, new Model());
+		trace(arch.markup);
 		hotModule();
 	}
 
