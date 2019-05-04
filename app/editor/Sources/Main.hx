@@ -9,7 +9,6 @@ import perdita.Perdita.*;
 class Main {
 	static function main() {
 		var arch = new Architecture("app", update, view, new Model());
-		trace(arch.markup);
 		hotModule();
 	}
 
@@ -24,7 +23,9 @@ class Main {
 					
 				])]),
 				div([CLASS("woah flex-column")], [
-					div([CLASS("game-window")], [])
+					div([CLASS("game-window")], [
+						canvas([ID("khanvas"), WIDTH("400"), HEIGHT("400"), TABINDEX("-1")])
+					])
 				]),
 				drawer(StretchColumn, ToggleColumn, model.columnRight , [])
 			]),

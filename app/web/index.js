@@ -13,6 +13,4 @@ sass.render(
   }
 );
 
-fs.copy("../app/web/assets", "./html5/assets")
-  .then(() => console.log("success!"))
-  .catch(err => console.error(err));
+fs.copy("../app/web/assets", "./html5/assets");
