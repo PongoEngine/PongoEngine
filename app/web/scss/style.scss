@@ -1,9 +1,9 @@
-@import "../../lib/Perdita/src/scss/perdita.scss";
+@import "../../../lib/Perdita/src/scss/perdita.scss";
 
 .game-window {
   width: 100%;
   height: 100%;
-  background-image: url('../img/pattern.png');
+  background-image: url('./assets/img/pattern.png');
   flex-shrink: 2;
 }
 

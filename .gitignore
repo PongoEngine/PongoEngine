@@ -3,3 +3,5 @@ node_modules
 .DS_Store
 dist
 app/js/runtime.js
+build
+.vscode

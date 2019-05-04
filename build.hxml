@@ -1,8 +1,0 @@
--cp lib/Towser/src
--cp lib/Perdita/src/haxe
--cp editor/haxe
--D analyzer-optimize
--D backend
--main Main
--dce full
---js dist/js/runtime.js
