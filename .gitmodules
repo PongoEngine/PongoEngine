@@ -4,3 +4,9 @@
 [submodule "lib/Towser"]
 	path = lib/Towser
 	url = https://github.com/PongoEngine/Towser
+[submodule "lib/Pongo"]
+	path = lib/Pongo
+	url = https://github.com/PongoEngine/Pongo
+[submodule "lib/Kha"]
+	path = lib/Kha
+	url = https://github.com/Kode/Kha

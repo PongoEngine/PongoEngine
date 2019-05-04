@@ -7,6 +7,7 @@
   "author": "Jeremy <cream@sourcre.am>",
   "license": "MIT",
   "dependencies": {
+    "browserify": "^16.2.3",
     "carlo": "^0.9.45",
     "incremental-dom": "^0.6.0",
     "parcel-bundler": "^1.12.3",
