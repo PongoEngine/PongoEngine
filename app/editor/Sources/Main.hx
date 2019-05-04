@@ -5,10 +5,13 @@ import engine.Model;
 import engine.Update.update;
 import engine.Update.GenMsg;
 import perdita.Perdita.*;
+import game.Game;
+
 
 class Main {
 	static function main() {
 		var arch = new Architecture("app", update, view, new Model());
+		Game.start();
 		hotModule();
 	}
 
@@ -24,7 +27,7 @@ class Main {
 				])]),
 				div([CLASS("woah flex-column")], [
 					div([CLASS("game-window")], [
-						canvas([ID("khanvas"), WIDTH("400"), HEIGHT("400"), TABINDEX("-1")])
+						canvas([ID("khanvas"), WIDTH("1366"), HEIGHT("768"), TABINDEX("-1")])
 					])
 				]),
 				drawer(StretchColumn, ToggleColumn, model.columnRight , [])
