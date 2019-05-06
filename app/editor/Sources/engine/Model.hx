@@ -32,8 +32,8 @@ class Model
 
 		this.windows = [
 			new AccordianItem("wl1"),
-			new AccordianItem("wl2"),
-			new AccordianItem("wl3")
+			// new AccordianItem("wl2"),
+			// new AccordianItem("wl3")
 		];
 
 		this.button1 = new Toggle(true);
@@ -42,7 +42,7 @@ class Model
 		this.text2 = new Textfield("Volume", "");
 
 		this.floaters = [
-			new Window()
+			// new Window()
 		];
 
 		this.selectedFloater = null;
