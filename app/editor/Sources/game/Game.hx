@@ -17,7 +17,7 @@ class Game {
     private static function onStart(pongo :Pongo) : Void
     {
         pongo
-            .addSystem(new TransformSystem())
+            .addSystem( new TransformSystem())
             .addSystem(new HeroSystem());
 
         pongo.root

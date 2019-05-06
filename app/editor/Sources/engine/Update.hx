@@ -28,7 +28,15 @@ class Update {
 				}
 			case GlobalMove(e):
 				if(model.selectedFloater != null) {
-					moveFloater(model.activePoint, model.selectedFloater, e.pageX, e.pageY);
+					var mX = e.pageX - model.activePoint.x;
+					var mY = e.pageY - model.activePoint.y;
+					model.activePoint.update(e.pageX, e.pageY);
+					if(model.selectedFloater.isUpdatingWidth) {
+						model.selectedFloater.resizeTo(e.pageX, e.pageY);
+					}
+					else {
+						model.selectedFloater.moveBy(mX, mY);
+					}
 				}
 				var mX = e.pageX - model.activePoint.x;
 				model.activePoint.update(e.pageX, e.pageY);
@@ -61,19 +69,6 @@ class Update {
 				model.floaters.push(window);
 		}
 		return true;
-	}
-
-	public static inline function moveFloater(activePoint :Point, window:Window, x :Int, y :Int) : Void
-	{
-		var mX = x - activePoint.x;
-		var mY = y - activePoint.y;
-		activePoint.update(x, y);
-		if(window.isUpdatingWidth) {
-			window.resizeTo(x, y);
-		}
-		else {
-			window.moveBy(mX, mY);
-		}
 	}
 
 	public static inline function checkForColumn(model:Model) : Bool
