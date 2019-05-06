@@ -2,6 +2,7 @@
 let project = new Project('Pongo Engine');
 
 
+project.addParameter('--macro pongo.platform.asset.ManifestBuilder.use("../app/editor/Assets")');
 project.addSources("lib/Towser/src");
 project.addSources('lib/Pongo/Sources');
 project.addSources('lib/Perdita/src/haxe');
