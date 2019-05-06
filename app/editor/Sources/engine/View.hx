@@ -15,29 +15,20 @@ class View
 			div([CLASS("nav-bar color-container-darker border-bottom")], [
 			]),
 			div([CLASS("main-content flex-row")], [
-				drawer(StretchColumn, ToggleColumn, model.columnLeft, [for (window in model.windows) accordianItem(ToggleWindow, window, [
+				drawer(StretchColumn, ToggleColumn, model.drawerLeft, [for (window in model.windows) accordianItem(ToggleWindow, window, [
 					
 				])]),
-				div([CLASS("woah flex-column")], [
+				div([STYLE({width: "100%", height: "100%"}), CLASS("flex-column")], [
 					div([CLASS("game-window")], [
 						canvas([ID("khanvas"), WIDTH("1366"), HEIGHT("768"), TABINDEX("-1")])
 					])
 				]),
-				drawer(StretchColumn, ToggleColumn, model.columnRight , [])
+				drawer(StretchColumn, ToggleColumn, model.drawerRight , [
+
+				])
 			]),
 			div([], [for (f in model.floaters) window(SelectWindow, f, [
-				div([STYLE({margin: "2px"})], [
-					textfield(TextInput, model.text),
-					textfield(TextInput, model.text2),
-					div([], [
-						p([], "Hello"),
-						toggle(ToggleButton, model.button1)
-					]),
-					div([], [
-						p([], "Goodbye"),
-						toggle(ToggleButton, model.button2)
-					])
-				])
+
 			])])
 		]);
 	}
