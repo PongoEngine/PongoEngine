@@ -6,6 +6,7 @@ import perdita.model.Drawer;
 import perdita.model.AccordianItem;
 import perdita.model.Toggle;
 import perdita.model.util.Point;
+import perdita.model.util.PointerPosition;
 
 class Model 
 {
@@ -15,7 +16,7 @@ class Model
 	public var button2 :Toggle;
 
 	public var stretchableColumn :Drawer;
-	public var activePoint :Point;
+	public var activePoint :PointerPosition;
 	public var text :Textfield;
 	public var text2 :Textfield;
 	public var selectedFloater :Window;
@@ -26,7 +27,7 @@ class Model
 	{
 		this.columnLeft = new Drawer(true);
 		this.columnRight = new Drawer(false);
-		this.activePoint = new Point();
+		this.activePoint = new PointerPosition();
 		this.stretchableColumn = null;
 
 		this.windows = [

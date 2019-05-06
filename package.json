@@ -7,6 +7,7 @@
   "author": "Jeremy <cream@sourcre.am>",
   "license": "MIT",
   "dependencies": {
+    "browser-sync": "^2.26.5",
     "browserify": "^16.2.3",
     "fs-extra": "^7.0.1",
     "incremental-dom": "^0.6.0",
@@ -14,6 +15,9 @@
     "snabbdom": "^0.7.3"
   },
   "scripts": {
-    "start": "node lib/Kha/make --server"
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
   }
 }
