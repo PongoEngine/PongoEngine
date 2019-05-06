@@ -1,10 +1,8 @@
 package engine;
 
-import perdita.model.Textfield;
 import perdita.model.Window;
 import perdita.model.Drawer;
 import perdita.model.AccordianItem;
-import perdita.model.Toggle;
 import perdita.model.util.PointerPosition;
 
 class Model 
@@ -17,7 +15,11 @@ class Model
 	public var stretchableColumn :Drawer;
 	public var selectedFloater :Window;
 	public var floaters: Array<Window>;
-	public var windows: Array<AccordianItem>;
+	public var accordianItems: Array<AccordianItem>;
+
+	public var lineItem :LineItem;
+
+
 
 	public function new():Void 
 	{
@@ -25,14 +27,30 @@ class Model
 		this.drawerRight = new Drawer(false);
 		this.activePoint = new PointerPosition();
 		this.stretchableColumn = null;
+		this.lineItem = new LineItem("Root", false);
+		this.lineItem.children.push(new LineItem("child1", false));
+		this.lineItem.children.push(new LineItem("child2", false));
 
-		this.windows = [
-			new AccordianItem("wl1")
+		this.accordianItems = [
 		];
 
 		this.floaters = [
 		];
 
 		this.selectedFloater = null;
+	}
+}
+
+class LineItem
+{
+	public var title :String;
+	public var isExpanded :Bool;
+	public var children (default, null) :Array<LineItem>;
+
+	public function new(title :String, isExpanded :Bool) : Void
+	{
+		this.title = title;
+		this.isExpanded = isExpanded;
+		this.children = [];
 	}
 }

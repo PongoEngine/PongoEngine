@@ -60,12 +60,15 @@ class Update {
 				model.selectedFloater.isUpdatingWidth = updateDimensions;
 				model.floaters.remove(window);
 				model.floaters.push(window);
+			case ToggleLineItem(item):
+				item.isExpanded = !item.isExpanded;
 		}
 		return true;
 	}
 }
 
 enum GenMsg {
+	ToggleLineItem(lineItem :LineItem);
 	ToggleWindow(window :AccordianItem);
 	ToggleColumn(column :Drawer);
 	ToggleButton(button :Toggle);
