@@ -33,10 +33,14 @@ class View
 		]);
 	}
 
-	public static function roooots(item:LineItem) : RenderFunction<Model, GenMsg>
+	public static function roooots(item:TreeItem) : RenderFunction<Model, GenMsg>
 	{
-		return lineItem(ToggleLineItem, item, [
-			for(item in item.children) roooots(item)
-		]);
+		var c = switch item.content {
+			case EMPTY: [];
+			case CHILDREN(children): [for(item in children) roooots(item)];
+			case COMPONENT(text): [textfield(TextInput, text)];
+		}
+
+		return lineItem(ToggleLineItem, item, c);
 	}
 }
