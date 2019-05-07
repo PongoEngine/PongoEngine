@@ -5,6 +5,7 @@ import perdita.model.Window;
 import perdita.model.Drawer;
 import perdita.model.Toggle;
 import perdita.model.AccordianItem;
+import perdita.model.LineItem;
 import engine.Model;
 import js.html.MouseEvent;
 

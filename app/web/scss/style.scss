@@ -25,30 +25,3 @@ $nav-height: 50px;
   height: 100%;
   outline: none;
 }
-
-.line-item {
-  background-color: #444;
-  border: 1px solid #000;
-  word-wrap: none;
-}
-
-.line-item-toggle {
-  width: 20px;
-  height: 20px;
-  background-color: #000;
-  border: 1px solid #aaa;
-  box-sizing: border-box;
-  display: inline-block;
-  text-align: center;
-  margin: 4px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.line-item-title {
-  user-select: none;
-}
-
-.line-item-children {
-  margin-left: 20px;
-}

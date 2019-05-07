@@ -1,5 +1,6 @@
 package engine;
 
+import perdita.model.LineItem;
 import towser.Html.*;
 import towser.RenderFunction;
 import engine.Model;
@@ -16,7 +17,9 @@ class View
 			]),
 			div([CLASS("main-content flex-row")], [
 				drawer(StretchColumn, ToggleColumn, model.drawerLeft, [
-					lineItem(model.lineItem, [for(item in model.lineItem.children) lineItem(item, [])])
+					div([CLASS("border-bottom color-container-darkest")], [
+						roooots(model.lineItem)
+					])
 				]),
 				div([STYLE({width: "100%", height: "100%"}), CLASS("flex-column")], [
 					div([CLASS("game-window")], [
@@ -30,12 +33,10 @@ class View
 		]);
 	}
 
-	public static function lineItem(lineItem :LineItem, children :Array<RenderFunction<Model, GenMsg>>) : RenderFunction<Model, GenMsg>
+	public static function roooots(item:LineItem) : RenderFunction<Model, GenMsg>
 	{
-		return div([CLASS("line-item")], [
-			span([CLASS("line-item-toggle"), ON_CLICK(ToggleLineItem(lineItem))], (lineItem.isExpanded ? "-" : "+")),
-			span([CLASS("line-item-title")], lineItem.title),
-			lineItem.isExpanded ? div([CLASS("line-item-children")], children) : span([], "")
+		return lineItem(ToggleLineItem, item, [
+			for(item in item.children) roooots(item)
 		]);
 	}
 }
