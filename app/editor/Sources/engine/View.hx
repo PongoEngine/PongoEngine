@@ -17,7 +17,7 @@ class View
 			]),
 			div([CLASS("main-content flex-row")], [
 				drawer(StretchColumn, ToggleColumn, model.drawerLeft, [
-					div([CLASS("border-bottom color-container-darkest")], [
+					div([CLASS("border-bottom color-container-darkest models")], [
 						roooots(model.lineItem)
 					])
 				]),
@@ -41,6 +41,11 @@ class View
 			case COMPONENT(text): [textfield(TextInput, text)];
 		}
 
-		return lineItem(ToggleLineItem, item, c);
+		return lineItem(ToggleLineItem, item, div([CLASS("line-item")], [
+			span([CLASS("color-container-darker")], "+"),
+			span([CLASS("color-container-darker")], "-"),
+			span([CLASS("color-container-darker")], "↑"),
+			span([CLASS("color-container-darker")], "↓")
+		]), c);
 	}
 }

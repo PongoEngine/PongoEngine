@@ -25,25 +25,25 @@ class Model
 		this.drawerRight = new Drawer(false);
 		this.activePoint = new PointerPosition();
 		this.stretchableColumn = null;
-		this.lineItem = new TreeItem("Root", false);
-		var c1 = new TreeItem("child1", false);
+		this.lineItem = new TreeItem(false);
+		var c1 = new TreeItem(false);
 		this.lineItem.addChild(c1);
 		c1
-			.addChild(new TreeItem("gChild1", false)
+			.addChild(new TreeItem(false)
 				.setTextField(new Textfield("Robot", "")))
-			.addChild(new TreeItem("gChild2", false)
+			.addChild(new TreeItem(false)
 				.setTextField(new Textfield("Clams", "")))
-			.addChild(new TreeItem("gChild3", false)
+			.addChild(new TreeItem(false)
 				.setTextField(new Textfield("Position", "")))
-			.addChild(new TreeItem("gChild4", false));
+			.addChild(new TreeItem(false));
 
-		var c2 = new TreeItem("child2", false);
+		var c2 = new TreeItem(false);
 		this.lineItem.addChild(c2);
 		c2
-			.addChild(new TreeItem("gChild1", false))
-			.addChild(new TreeItem("gChild2", false))
-			.addChild(new TreeItem("gChild3", false))
-			.addChild(new TreeItem("gChild4", false));
+			.addChild(new TreeItem(false))
+			.addChild(new TreeItem(false))
+			.addChild(new TreeItem(false))
+			.addChild(new TreeItem(false));
 
 		this.accordianItems = [
 		];
@@ -59,9 +59,9 @@ class TreeItem extends LineItem
 {
 	public var content :TreeContent;
 
-	public function new(title :String, isExpanded :Bool) : Void
+	public function new(isExpanded :Bool) : Void
 	{
-		super(title, isExpanded);
+		super(isExpanded);
 		this.content = EMPTY;
 	}
 

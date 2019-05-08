@@ -25,3 +25,26 @@ $nav-height: 50px;
   height: 100%;
   outline: none;
 }
+
+.line-item {
+  user-select: none;
+  white-space: nowrap;
+}
+
+.line-item > span {
+  cursor: pointer;
+  margin: 1px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  display: inline-block;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.models {
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
