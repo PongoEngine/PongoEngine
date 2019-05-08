@@ -8,9 +8,7 @@ project.addSources('lib/Pongo/Sources');
 project.addSources('lib/Perdita/src/haxe');
 project.addAssets("app/editor/Assets/**");
 project.addSources('app/editor/Sources');
-project.addParameter("--cmd node ../app/web/css_assets.js");
 project.addParameter("--connect 6000");
-// project.addParameter("--cmd npx browserify html5/kha.js | npx minify > html5/kha_browserified.js");
 project.addParameter("--cmd npx browserify html5/kha.js > html5/kha_browserified.js");
 
 resolve(project);
