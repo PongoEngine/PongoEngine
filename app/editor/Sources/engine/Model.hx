@@ -1,11 +1,13 @@
 package engine;
 
+import haxe.Serializer;
+import haxe.Unserializer;
+
 import perdita.model.Textfield;
 import perdita.model.Window;
 import perdita.model.Drawer;
 import perdita.model.AccordianItem;
 import perdita.model.LineItem;
-import perdita.model.Textfield;
 import perdita.model.util.PointerPosition;
 
 class Model 
@@ -18,6 +20,30 @@ class Model
 	public var floaters: Array<Window>;
 	public var accordianItems: Array<AccordianItem>;
 	public var lineItem :TreeItem;
+
+	@:keep
+	function hxSerialize(s:Serializer) {
+		s.serialize(drawerLeft);
+		s.serialize(drawerRight);
+		s.serialize(activePoint);
+		s.serialize(stretchableColumn);
+		s.serialize(selectedFloater);
+		s.serialize(floaters);
+		s.serialize(accordianItems);
+		s.serialize(lineItem);
+	}
+
+	@:keep
+	function hxUnserialize(u:Unserializer) {
+		drawerLeft = u.unserialize();
+		drawerRight = u.unserialize();
+		activePoint = u.unserialize();
+		stretchableColumn = u.unserialize();
+		selectedFloater = u.unserialize();
+		floaters = u.unserialize();
+		accordianItems = u.unserialize();
+		lineItem = u.unserialize();
+	}
 
 	public function new():Void 
 	{
@@ -86,6 +112,18 @@ class TreeItem extends LineItem
 	{
 		this.content = EMPTY;
 		return this;
+	}
+
+	@:keep
+	override function hxSerialize(s:Serializer) {
+		s.serialize(content);
+		s.serialize(isExpanded);
+	}
+
+	@:keep
+	override function hxUnserialize(u:Unserializer) {
+		content = u.unserialize();
+		isExpanded = u.unserialize();
 	}
 }
 

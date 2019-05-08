@@ -8,10 +8,15 @@ import perdita.model.AccordianItem;
 import perdita.model.LineItem;
 import engine.Model;
 import js.html.MouseEvent;
+import js.Browser.window as W;
+import haxe.Serializer;
 
 class Update {
 	public static function update(msg:GenMsg, model:Model):Bool {
 		switch msg {
+			case SAVE:
+				var s = Serializer.run(model);
+				W.localStorage.setItem("appState", s);
 			case ToggleWindow(window):
 				window.toggle();
 			case ToggleColumn(column):
@@ -69,6 +74,7 @@ class Update {
 }
 
 enum GenMsg {
+	SAVE;
 	ToggleLineItem(lineItem :LineItem);
 	ToggleWindow(window :AccordianItem);
 	ToggleColumn(column :Drawer);

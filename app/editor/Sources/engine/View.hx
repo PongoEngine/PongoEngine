@@ -1,6 +1,5 @@
 package engine;
 
-import perdita.model.LineItem;
 import towser.Html.*;
 import towser.RenderFunction;
 import engine.Model;
@@ -14,6 +13,7 @@ class View
 		var disableSelect = model.selectedFloater != null ? " disable-user-select" : "";
 		return div([CLASS("full-screen" + disableSelect), MOUSE_DOWN(GlobalDown), MOUSE_UP(GlobalUp), MOUSE_MOVE(GlobalMove)], [
 			div([CLASS("nav-bar color-container-darker border-bottom")], [
+				span([ON_CLICK(SAVE)], "SAVE")
 			]),
 			div([CLASS("main-content flex-row")], [
 				drawer(StretchColumn, ToggleColumn, model.drawerLeft, [
