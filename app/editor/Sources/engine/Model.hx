@@ -20,6 +20,7 @@ class Model
 	public var floaters: Array<Window>;
 	public var accordianItems: Array<AccordianItem>;
 	public var lineItem :TreeItem;
+	public var activeKeys :Map<ActionKey, ActionKey>;
 
 	@:keep
 	function hxSerialize(s:Serializer) {
@@ -31,6 +32,7 @@ class Model
 		s.serialize(floaters);
 		s.serialize(accordianItems);
 		s.serialize(lineItem);
+		s.serialize(activeKeys);
 	}
 
 	@:keep
@@ -43,6 +45,7 @@ class Model
 		floaters = u.unserialize();
 		accordianItems = u.unserialize();
 		lineItem = u.unserialize();
+		activeKeys = u.unserialize();
 	}
 
 	public function new():Void 
@@ -78,6 +81,7 @@ class Model
 		];
 
 		this.selectedFloater = null;
+		this.activeKeys = new Map<ActionKey, ActionKey>();
 	}
 }
 
@@ -132,4 +136,11 @@ enum TreeContent
 	EMPTY;
 	CHILDREN(children :Array<TreeItem>);
 	COMPONENT(text :Textfield);
+}
+
+@:enum
+abstract ActionKey(String) from String {
+	var Command = "Meta";
+	var S = "s";
+	var R = "r";
 }

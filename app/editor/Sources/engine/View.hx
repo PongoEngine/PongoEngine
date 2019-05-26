@@ -13,7 +13,7 @@ class View
     public static function view(model:Model) : RenderFunction<Model, GenMsg>
 	{
 		var disableSelect = model.selectedFloater != null ? " disable-user-select" : "";
-		return div([class_("full-screen" + disableSelect), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
+		return div([class_("full-screen" + disableSelect), tabindex("-2"), onkeydown(GLOBAL_KEY_DOWN), onkeyup(GLOBAL_KEY_UP), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
 			div([class_("nav-bar color-container-darker border-bottom")], [
 				button([onclick(SAVE), class_("save-button color-actionable")], [
 					span([], [text("SAVE")])
@@ -27,7 +27,7 @@ class View
 				]),
 				div([style({width: "100%", height: "100%"}), class_("flex-column")], [
 					div([class_("game-window")], [
-						canvas([id("khanvas"), width("1366"), height("768"), tabindex("-1")], [])
+						canvas([id("khanvas"), width("1366"), height("768"), tabindex("-1"), onkeydown(GLOBAL_KEY_DOWN), onkeyup(GLOBAL_KEY_UP)], [])
 					])
 				])
 			]),

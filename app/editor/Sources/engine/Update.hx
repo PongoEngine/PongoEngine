@@ -1,5 +1,6 @@
 package engine;
 
+import towser.html.Event.KeyboardEvent;
 import towser.html.Event.MouseEvent;
 import towser.html.Event.InputEvent;
 import perdita.model.Textfield;
@@ -15,6 +16,24 @@ import haxe.Serializer;
 class Update {
 	public static function update(msg:GenMsg, model:Model):Bool {
 		switch msg {
+			case GLOBAL_KEY_DOWN(e):
+				handleKey(e.key, model, true);
+				switch operation(e.key, model.activeKeys) {
+					case RefreshBrowser: {
+						js.Browser.location.reload();
+						e.preventDefault();
+					}
+					case SaveState: {
+						var s = Serializer.run(model);
+						W.localStorage.setItem("appState", s);
+						e.preventDefault();
+					}
+					case NoOp:
+				}
+				
+			case GLOBAL_KEY_UP(e):
+				e.preventDefault();
+				handleKey(e.key, model, false);
 			case SAVE(e):
 				var s = Serializer.run(model);
 				W.localStorage.setItem("appState", s);
@@ -59,6 +78,7 @@ class Update {
 			case ToggleButton(button):
 				button.isActive = !button.isActive;
 			case TextInput(text, e):
+				trace(e);
 				text.value = untyped e.target.value;
 			case SelectWindow(window, updateDimensions, e):
 				e.stopPropagation();
@@ -72,9 +92,37 @@ class Update {
 		}
 		return true;
 	}
+
+	public static function handleKey(key :ActionKey, model:Model, isDown :Bool) : Void
+	{
+		switch [key, isDown] {
+			case [Command, true]: model.activeKeys.set(Command, Command);
+			case [Command, false]: model.activeKeys.remove(Command);
+			case [S, true]: model.activeKeys.set(S, S);
+			case [S, false]: model.activeKeys.remove(S);
+			case [R, true]: model.activeKeys.set(R, R);
+			case [R, false]: model.activeKeys.remove(R);
+			case _:
+		}
+	}
+
+	public static function operation(lastKey :ActionKey, keys:Map<ActionKey, ActionKey>) : Operation
+	{
+		if((lastKey == S && keys.exists(S) && keys.exists(Command))) {
+			return SaveState;
+		}
+		else if((lastKey == R && keys.exists(R) && keys.exists(Command))) {
+			return RefreshBrowser;
+		}
+		else {
+			return NoOp;
+		}
+	}
 }
 
 enum GenMsg {
+	GLOBAL_KEY_DOWN(e :KeyboardEvent);
+	GLOBAL_KEY_UP(e :KeyboardEvent);
 	SAVE(e :MouseEvent);
 	ToggleLineItem(lineItem :LineItem, e :MouseEvent);
 	ToggleWindow(window :AccordianItem);
@@ -86,4 +134,10 @@ enum GenMsg {
 	GlobalDown(e :MouseEvent);
 	StretchColumn(data:Drawer, e :MouseEvent);
 	SelectWindow(data:Window, updateDimensions :Bool, e:MouseEvent);
+}
+
+enum Operation {
+	RefreshBrowser;
+	SaveState;
+	NoOp;
 }
