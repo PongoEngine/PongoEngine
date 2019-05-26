@@ -78,7 +78,6 @@ class Update {
 			case ToggleButton(button):
 				button.isActive = !button.isActive;
 			case TextInput(text, e):
-				trace(e);
 				text.value = untyped e.target.value;
 			case SelectWindow(window, updateDimensions, e):
 				e.stopPropagation();
