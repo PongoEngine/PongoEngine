@@ -116,14 +116,14 @@ class TreeItem extends LineItem
 
 	@:keep
 	override function hxSerialize(s:Serializer) {
+		super.hxSerialize(s);
 		s.serialize(content);
-		s.serialize(isExpanded);
 	}
 
 	@:keep
 	override function hxUnserialize(u:Unserializer) {
+		super.hxUnserialize(u);
 		content = u.unserialize();
-		isExpanded = u.unserialize();
 	}
 }
 

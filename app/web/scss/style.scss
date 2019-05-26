@@ -48,3 +48,16 @@ $nav-height: 50px;
   overflow-y: hidden;
   overflow-x: scroll;
 }
+
+.save-button {
+  border-width: 1px;
+  border-style: solid;
+  // padding: 10px;
+  line-height: 32px;
+  height: 32px;
+  padding: 0 10px;
+  margin: 6px;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+}

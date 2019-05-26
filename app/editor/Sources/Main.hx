@@ -1,22 +1,21 @@
-import towser.architecture.Architecture;
+import towser.Towser;
 import engine.Model;
 import engine.Update.update;
 import engine.View.view;
 import game.Game;
-import js.Browser.window as W;
+import js.Browser.window;
 import haxe.Unserializer;
 
 class Main {
 	static function main() {
-		var item = W.localStorage.getItem("appState");
-		var savedState :Model = Unserializer.run(item);
-		var model = (savedState != null)
-			? savedState
-			: new Model();
+		// var item = window.localStorage.getItem("appState");
+		// var savedState :Model = Unserializer.run(item);
+		// var model = (savedState != null)
+		// 	? savedState
+		// 	: new Model();
+		// trace(item);
 
-		trace(item);
-
-		var arch = new Architecture("app", update, view, model);
+		new Towser("app", update, view, new Model());
 		Game.start(pongo -> {
 			
 		});

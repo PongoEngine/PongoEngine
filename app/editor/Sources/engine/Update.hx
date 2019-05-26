@@ -14,7 +14,7 @@ import haxe.Serializer;
 class Update {
 	public static function update(msg:GenMsg, model:Model):Bool {
 		switch msg {
-			case SAVE:
+			case SAVE(e):
 				var s = Serializer.run(model);
 				W.localStorage.setItem("appState", s);
 			case ToggleWindow(window):
@@ -74,7 +74,7 @@ class Update {
 }
 
 enum GenMsg {
-	SAVE;
+	SAVE(e :MouseEvent);
 	ToggleLineItem(lineItem :LineItem);
 	ToggleWindow(window :AccordianItem);
 	ToggleColumn(column :Drawer);
