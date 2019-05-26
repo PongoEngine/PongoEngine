@@ -1,5 +1,7 @@
 package engine;
 
+import towser.html.Event.MouseEvent;
+import towser.html.Event.InputEvent;
 import perdita.model.Textfield;
 import perdita.model.Window;
 import perdita.model.Drawer;
@@ -7,7 +9,6 @@ import perdita.model.Toggle;
 import perdita.model.AccordianItem;
 import perdita.model.LineItem;
 import engine.Model;
-import js.html.MouseEvent;
 import js.Browser.window as W;
 import haxe.Serializer;
 
@@ -19,7 +20,7 @@ class Update {
 				W.localStorage.setItem("appState", s);
 			case ToggleWindow(window):
 				window.toggle();
-			case ToggleColumn(column):
+			case ToggleColumn(column, _):
 				if(column.isOpen) {
 					column.close();
 				}
@@ -57,8 +58,8 @@ class Update {
 				model.stretchableColumn = column;
 			case ToggleButton(button):
 				button.isActive = !button.isActive;
-			case TextInput(text, str):
-				text.value = str;
+			case TextInput(text, e):
+				text.value = untyped e.target.value;
 			case SelectWindow(window, updateDimensions, e):
 				e.stopPropagation();
 				model.activePoint.update(e.pageX, e.pageY);
@@ -66,7 +67,7 @@ class Update {
 				model.selectedFloater.isUpdatingWidth = updateDimensions;
 				model.floaters.remove(window);
 				model.floaters.push(window);
-			case ToggleLineItem(item):
+			case ToggleLineItem(item, _):
 				item.isExpanded = !item.isExpanded;
 		}
 		return true;
@@ -75,11 +76,11 @@ class Update {
 
 enum GenMsg {
 	SAVE(e :MouseEvent);
-	ToggleLineItem(lineItem :LineItem);
+	ToggleLineItem(lineItem :LineItem, e :MouseEvent);
 	ToggleWindow(window :AccordianItem);
-	ToggleColumn(column :Drawer);
+	ToggleColumn(column :Drawer, e :MouseEvent);
 	ToggleButton(button :Toggle);
-	TextInput(data :Textfield, str :String);
+	TextInput(data :Textfield, str :InputEvent);
 	GlobalMove(e :MouseEvent);
 	GlobalUp(e :MouseEvent);
 	GlobalDown(e :MouseEvent);

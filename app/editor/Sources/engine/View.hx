@@ -1,57 +1,55 @@
 package engine;
 
+import perdita.Perdita.*;
 import towser.html.Attributes.*;
 import towser.html.Events.*;
 import towser.html.Html.*;
 import towser.RenderFunction;
 import engine.Model;
 import engine.Update.GenMsg;
-import perdita.Perdita.*;
 
 class View
 {
     public static function view(model:Model) : RenderFunction<Model, GenMsg>
 	{
-		// var disableSelect = model.selectedFloater != null ? " disable-user-select" : "";
-		// return div([class_("full-screen" + disableSelect), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
-		// 	div([class_("nav-bar color-container-darker border-bottom")], [
-		// 		button([onclick(SAVE), class_("save-button color-actionable")], [
-		// 			span([], [text("SAVE")])
-		// 		])
-		// 	]),
-		// 	div([class_("main-content flex-row")], [
-		// 		drawer(StretchColumn, ToggleColumn, model.drawerLeft, [
-		// 			div([class_("border-bottom color-container-darkest models")], [
-		// 				roooots(model.lineItem)
-		// 			])
-		// 		]),
-		// 		div([style({width: "100%", height: "100%"}), class_("flex-column")], [
-		// 			div([class_("game-window")], [
-		// 				canvas([id("khanvas"), width("1366"), height("768"), tabindex("-1")])
-		// 			])
-		// 		])
-		// 	]),
-		// 	div([], [for (f in model.floaters) window(SelectWindow, f, [
+		var disableSelect = model.selectedFloater != null ? " disable-user-select" : "";
+		return div([class_("full-screen" + disableSelect), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
+			div([class_("nav-bar color-container-darker border-bottom")], [
+				button([onclick(SAVE), class_("save-button color-actionable")], [
+					span([], [text("SAVE")])
+				])
+			]),
+			div([class_("main-content flex-row")], [
+				drawer(StretchColumn, ToggleColumn, model.drawerLeft, [
+					div([class_("border-bottom color-container-darkest models")], [
+						roooots(model.lineItem)
+					])
+				]),
+				div([style({width: "100%", height: "100%"}), class_("flex-column")], [
+					div([class_("game-window")], [
+						canvas([id("khanvas"), width("1366"), height("768"), tabindex("-1")], [])
+					])
+				])
+			]),
+			div([], [for (f in model.floaters) window(SelectWindow, f, [
 
-		// 	])])
-		// ]);
-
-		return div([], []);
+			])])
+		]);
 	}
 
-	// public static function roooots(item:TreeItem) : RenderFunction<Model, GenMsg>
-	// {
-	// 	var c = switch item.content {
-	// 		case EMPTY: [];
-	// 		case CHILDREN(children): [for(item in children) roooots(item)];
-	// 		case COMPONENT(text): [textfield(TextInput, text)];
-	// 	}
+	public static function roooots(item:TreeItem) : RenderFunction<Model, GenMsg>
+	{
+		var c = switch item.content {
+			case EMPTY: [];
+			case CHILDREN(children): [for(item in children) roooots(item)];
+			case COMPONENT(text_): [textfield(TextInput, text_)];
+		}
 
-	// 	return lineItem(ToggleLineItem, item, div([class_("line-item")], [
-	// 		span([class_("color-container-darker")], [text("+")]),
-	// 		span([class_("color-container-darker")], [text("-")]),
-	// 		span([class_("color-container-darker")], [text("↑")]),
-	// 		span([class_("color-container-darker")], [text("↓")])
-	// 	]), c);
-	// }
+		return lineItem(ToggleLineItem, item, div([class_("line-item")], [
+			span([class_("color-container-darker")], [text("+")]),
+			span([class_("color-container-darker")], [text("-")]),
+			span([class_("color-container-darker")], [text("↑")]),
+			span([class_("color-container-darker")], [text("↓")])
+		]), c);
+	}
 }
