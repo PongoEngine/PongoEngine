@@ -5,7 +5,8 @@ import towser.html.Attributes.*;
 import towser.html.Events.*;
 import towser.html.Html.*;
 import towser.RenderFunction;
-import engine.Model;
+import engine.model.Model;
+import engine.model.TreeItem;
 import engine.Update.GenMsg;
 
 class View

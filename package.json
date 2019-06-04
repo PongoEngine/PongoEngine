@@ -18,7 +18,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "build": "node lib/Kha/make html5"
+    "build": "node lib/Kha/make html5",
+    "serve": "node lib/Kha/make --server"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.3"

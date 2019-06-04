@@ -1,20 +1,26 @@
 package engine;
 
+import haxe.Json;
+import js.Browser;
+import towser.Towser;
 import towser.html.Event.KeyboardEvent;
 import towser.html.Event.MouseEvent;
 import towser.html.Event.InputEvent;
-import perdita.model.Textfield;
-import perdita.model.Window;
-import perdita.model.Drawer;
-import perdita.model.Toggle;
-import perdita.model.AccordianItem;
-import perdita.model.LineItem;
-import engine.Model;
+using perdita.model.Textfield;
+using perdita.model.Window;
+using perdita.model.Drawer;
+using perdita.model.Toggle;
+using perdita.model.AccordianItem;
+using perdita.model.LineItem;
+using perdita.model.util.PointerPosition;
+import engine.model.ActionKey;
+import engine.model.Model;
 import js.Browser.window as W;
-import haxe.Serializer;
+
+using StringTools;
 
 class Update {
-	public static function update(msg:GenMsg, model:Model):Bool {
+	public static function update(towser: Towser<Model, GenMsg>, msg:GenMsg, model:Model):Bool {
 		switch msg {
 			case GLOBAL_KEY_DOWN(e):
 				handleKey(e.key, model, true);
@@ -24,9 +30,12 @@ class Update {
 						e.preventDefault();
 					}
 					case SaveState: {
-						var s = Serializer.run(model);
+						var s = Json.stringify(model);
 						W.localStorage.setItem("appState", s);
 						e.preventDefault();
+					}
+					case ResetState: {
+						towser.model = new Model();
 					}
 					case NoOp:
 				}
@@ -35,8 +44,6 @@ class Update {
 				e.preventDefault();
 				handleKey(e.key, model, false);
 			case SAVE(e):
-				var s = Serializer.run(model);
-				W.localStorage.setItem("appState", s);
 			case ToggleWindow(window):
 				window.toggle();
 			case ToggleColumn(column, _):
@@ -101,20 +108,41 @@ class Update {
 			case [S, false]: model.activeKeys.remove(S);
 			case [R, true]: model.activeKeys.set(R, R);
 			case [R, false]: model.activeKeys.remove(R);
+			case [J, true]: model.activeKeys.set(J, J);
+			case [J, false]: model.activeKeys.remove(J);
 			case _:
 		}
 	}
 
 	public static function operation(lastKey :ActionKey, keys:Map<ActionKey, ActionKey>) : Operation
 	{
-		if((lastKey == S && keys.exists(S) && keys.exists(Command))) {
+		if((lastKey == S && keys.exists(Command))) {
 			return SaveState;
 		}
-		else if((lastKey == R && keys.exists(R) && keys.exists(Command))) {
+		else if((lastKey == R && keys.exists(Command))) {
 			return RefreshBrowser;
+		}
+		else if((lastKey == J && keys.exists(Command))) {
+			return ResetState;
 		}
 		else {
 			return NoOp;
+		}
+	}
+
+	public static function download(filename :String, text :String) : Void
+	{
+		var pom = Browser.document.createElement('a');
+		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + text.urlEncode());
+		pom.setAttribute('download', filename);
+
+		if (Browser.document.createEvent != null) {
+			var event = Browser.document.createEvent('MouseEvents');
+			event.initEvent('click', true, true);
+			pom.dispatchEvent(event);
+		}
+		else {
+			pom.click();
 		}
 	}
 }
@@ -137,6 +165,7 @@ enum GenMsg {
 
 enum Operation {
 	RefreshBrowser;
+	ResetState;
 	SaveState;
 	NoOp;
 }
