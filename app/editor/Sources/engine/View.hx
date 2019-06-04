@@ -16,9 +16,6 @@ class View
 		var disableSelect = model.selectedFloater != null ? " disable-user-select" : "";
 		return div([class_("full-screen" + disableSelect), tabindex("-2"), onkeydown(GLOBAL_KEY_DOWN), onkeyup(GLOBAL_KEY_UP), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
 			div([class_("nav-bar color-container-darker border-bottom")], [
-				button([onclick(SAVE), class_("save-button color-actionable")], [
-					span([], [text("SAVE")])
-				])
 			]),
 			div([class_("main-content flex-row")], [
 				drawer(StretchColumn, ToggleColumn, model.drawerLeft, [
