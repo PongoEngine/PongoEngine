@@ -1,21 +1,17 @@
-package engine;
+package engine.update;
 
 import haxe.Json;
 import js.Browser;
 import towser.Towser;
-import towser.html.Event.KeyboardEvent;
-import towser.html.Event.MouseEvent;
-import towser.html.Event.InputEvent;
-using perdita.model.Textfield;
 using perdita.model.Window;
 using perdita.model.Drawer;
-using perdita.model.Toggle;
 using perdita.model.AccordianItem;
-using perdita.model.LineItem;
 using perdita.model.util.PointerPosition;
 import engine.model.ActionKey;
 import engine.model.Model;
+using engine.model.TreeItem;
 import js.Browser.window as W;
+import haxe.Serializer;
 
 using StringTools;
 
@@ -30,7 +26,7 @@ class Update {
 						e.preventDefault();
 					}
 					case SaveState: {
-						var s = Json.stringify(model);
+						var s = Serializer.run(model);
 						W.localStorage.setItem("appState", s);
 						e.preventDefault();
 					}
@@ -95,6 +91,14 @@ class Update {
 				model.floaters.push(window);
 			case ToggleLineItem(item, _):
 				item.isExpanded = !item.isExpanded;
+			case AddTreeItem(item, e):
+				var newItem = new TreeItem(true, model.nextId++);
+				item.addChild(newItem);
+			case DeleteTreeItem(item, e):
+				var parent = TreeItem.getMatches(model.lineItem, item.parentId)[0];
+				if(parent != null) {
+					parent.removeChild(item);
+				}
 		}
 		return true;
 	}
@@ -116,17 +120,11 @@ class Update {
 
 	public static function operation(lastKey :ActionKey, keys:Map<ActionKey, ActionKey>) : Operation
 	{
-		if((lastKey == S && keys.exists(Command))) {
-			return SaveState;
-		}
-		else if((lastKey == R && keys.exists(Command))) {
-			return RefreshBrowser;
-		}
-		else if((lastKey == J && keys.exists(Command))) {
-			return ResetState;
-		}
-		else {
-			return NoOp;
+		return switch [lastKey, keys.exists(Command)] {
+			case [S, true]: SaveState;
+			case [R, true]: RefreshBrowser;
+			case [J, true]: ResetState;
+			case _: NoOp;
 		}
 	}
 
@@ -145,27 +143,4 @@ class Update {
 			pom.click();
 		}
 	}
-}
-
-enum GenMsg {
-	GLOBAL_KEY_DOWN(e :KeyboardEvent);
-	GLOBAL_KEY_UP(e :KeyboardEvent);
-	SAVE(e :MouseEvent);
-	ToggleLineItem(lineItem :LineItem, e :MouseEvent);
-	ToggleWindow(window :AccordianItem);
-	ToggleColumn(column :Drawer, e :MouseEvent);
-	ToggleButton(button :Toggle);
-	TextInput(data :Textfield, str :InputEvent);
-	GlobalMove(e :MouseEvent);
-	GlobalUp(e :MouseEvent);
-	GlobalDown(e :MouseEvent);
-	StretchColumn(data:Drawer, e :MouseEvent);
-	SelectWindow(data:Window, updateDimensions :Bool, e:MouseEvent);
-}
-
-enum Operation {
-	RefreshBrowser;
-	ResetState;
-	SaveState;
-	NoOp;
 }

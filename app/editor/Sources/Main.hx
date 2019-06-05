@@ -1,10 +1,10 @@
-import haxe.Json;
 import towser.Towser;
 import engine.model.Model;
-import engine.Update.update;
+import engine.update.Update.update;
 import engine.View.view;
 // import game.Game;
 import js.Browser.window;
+import haxe.Unserializer;
 
 class Main {
 	static function main() {
@@ -12,7 +12,7 @@ class Main {
 		var model : Model = (item != null)
 			? {
 				try{
-					Model.fromSave(Json.parse(item));
+					Unserializer.run(item);
 				}
 				catch(e :Dynamic) {
 					new Model();

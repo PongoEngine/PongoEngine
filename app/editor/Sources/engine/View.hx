@@ -7,7 +7,7 @@ import towser.html.Html.*;
 import towser.RenderFunction;
 import engine.model.Model;
 import engine.model.TreeItem;
-import engine.Update.GenMsg;
+import engine.update.GenMsg;
 
 class View
 {
@@ -44,10 +44,8 @@ class View
 		}
 
 		return lineItem(ToggleLineItem, item, div([class_("line-item")], [
-			span([class_("color-container-darker")], [text("+")]),
-			span([class_("color-container-darker")], [text("-")]),
-			span([class_("color-container-darker")], [text("↑")]),
-			span([class_("color-container-darker")], [text("↓")])
+			span([class_("color-container-darker"), onclick(AddTreeItem.bind(item))], [text("+")]),
+			span([class_("color-container-darker"), onclick(DeleteTreeItem.bind(item))], [text("x")]),
 		]), c);
 	}
 }
