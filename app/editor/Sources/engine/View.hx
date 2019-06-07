@@ -59,7 +59,7 @@ class View
 			case FUNC(vals): "Function";
 		}
 		if(!model.textFields.exists(id)) {
-			model.textFields.set(id, new TypedTextField(variable.name + " : " + type, "", variable.type));
+			model.textFields.set(id, new TypedTextField(variable.name + " : " + type, "", true, variable.type));
 		}
 		return model.textFields.get(id);
 	}

@@ -14,7 +14,7 @@ class TreeItem extends LineItem
 	{
 		super(isExpanded, id);
 		this.content = EMPTY;
-		this.field = new Textfield("Entity Name", name);
+		this.field = new Textfield("Entity Name", name, true);
 		this.parentId = new LineItemId("");
 	}
 

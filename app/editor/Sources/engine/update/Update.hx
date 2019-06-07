@@ -114,7 +114,8 @@ class Update {
 			case TypedTextInput(type, text, e):
 				switch type {
 					case TYPE(module, params): {
-						text.value = checkModule(module, untyped e.target.value);
+						text.isValid = checkModule(module, untyped e.target.value); 
+						text.value = untyped e.target.value;
 					}
 					case FUNC(vals):
 				}
@@ -140,13 +141,13 @@ class Update {
 		return true;
 	}
 
-	private static function checkModule(module :Module, text :String) : String
+	private static function checkModule(module :Module, text :String) : Bool
 	{
 		return switch module {
-			case Int: text.parseInt();
-			case Float: text.parseFloat();
-			case String: text;
-			case _: text;
+			case Int: text.isInt();
+			case Float: text.isFloat();
+			case String: true;
+			case _: true;
 		}
 	}
 

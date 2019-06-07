@@ -2,19 +2,19 @@ package engine.util;
 
 class EngineStringTools
 {
-    public static function parseInt(str :String) : String
+    public static function isInt(str :String) : Bool
     {
         var val = Std.parseInt(str) + "";
         return (val == "null" || val == "NaN")
-            ? str
-            : val;
+            ? false
+            : true;
     }
 
-    public static function parseFloat(str :String) : String
+    public static function isFloat(str :String) : Bool
     {
         var val = Std.parseFloat(str) + "";
         return (val == "null" || val == "NaN")
-            ? str
-            : val;
+            ? false
+            : true;
     }
 }
