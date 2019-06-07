@@ -9,6 +9,7 @@ import typing.TypingData;
 
 class Model 
 {
+	public var baseKey :String;
 	public var drawerLeft (default, null):Drawer;
 	public var windows (default, null): Array<Window>;
 	public var accordianItems (default, null): Array<AccordianItem>;
@@ -19,10 +20,11 @@ class Model
 
 	public function new(typingData :TypingData):Void 
 	{
+		this.baseKey = "cool";
 		this.drawerLeft = new Drawer(true, UUID.drawerId());
 		this.lineItem = new TreeItem(true, "", UUID.lineItemId());
 		this.accordianItems = [];
-		this.windows = [new Window(UUID.windowId()), new Window(UUID.windowId())];
+		this.windows = [new Window(UUID.windowId())];
 		this.activeKeys = new Map<ActionKey, ActionKey>();
 		this.activeItem = None;
 		this.typingData = typingData;

@@ -10,8 +10,6 @@ import typing.TypingData;
 class Main {
 	static function main() {
 		loadComponents(function(data) {
-			
-
 			var item = window.localStorage.getItem("appState");
 			var model : Model = (item != null)
 				? {
@@ -28,7 +26,7 @@ class Main {
 		});
 	}
 
-	static function loadComponents(onData :TypingData -> Void) : Void
+	public static function loadComponents(onData :TypingData -> Void) : Void
 	{
 		var http = new haxe.Http("./baseComponents.json");
 

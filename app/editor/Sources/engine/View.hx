@@ -1,5 +1,6 @@
 package engine;
 
+import towser.html.Lazy;
 import perdita.Perdita.*;
 import towser.html.Attributes.*;
 import towser.html.Events.*;
@@ -8,11 +9,24 @@ import towser.RenderFunction;
 import engine.model.Model;
 import engine.model.TreeItem;
 import engine.update.GenMsg;
+using typing.TypingData;
 
 class View
 {
     public static function view(model:Model) : RenderFunction<Model, GenMsg>
 	{
+		// var componentType = model.typingData.classes.get("game.Component");
+		// trace(componentType);
+
+		var x = Lazy.lazy1("stuff", function(data :String) {
+			var componentType = model.typingData.classes.get("game.Component");
+			var extended = model.typingData.getExtended(componentType);
+			trace("lazy!");
+			return div([], extended.map(function(e) {
+				return p([], [text(e.name)]);
+			}));
+		});
+
 		// var disableSelect = model.activeItem != None ? " disable-user-select" : "";
 		return div([class_("full-screen"), tabindex("-2"), onkeydown(GLOBAL_KEY_DOWN), onkeyup(GLOBAL_KEY_UP), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
 			div([class_("nav-bar color-container-darker border-bottom")], [
@@ -30,9 +44,7 @@ class View
 				])
 			]),
 			div([], [for (f in model.windows) window(SelectWindow, f, [
-				div([class_("border-bottom color-container-darkest models")], [
-					roooots(model.lineItem)
-				])
+				x("stuff")
 			])])
 		]);
 	}

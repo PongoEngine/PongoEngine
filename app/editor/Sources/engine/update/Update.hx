@@ -32,7 +32,10 @@ class Update {
 						e.preventDefault();
 					}
 					case ResetState: {
-						// towser.model = new Model();
+						Main.loadComponents(function(data) {
+							towser.model = new Model(data);
+							towser.render();
+						});
 					}
 					case NoOp:
 				}
@@ -159,10 +162,7 @@ class Update {
 		return switch [lastKey, keys.exists(Command)] {
 			case [S, true]: SaveState;
 			case [R, true]: RefreshBrowser;
-			case [J, true]: {
-				trace(keys);
-				ResetState;
-			};
+			case [J, true]: ResetState;
 			case _: NoOp;
 		}
 	}
