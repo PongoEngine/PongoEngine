@@ -2,6 +2,9 @@ package game;
 
 class LameHuman extends Human
 {
+
+    public var zach :Float;
+
     public function new() : Void
     {
         super();

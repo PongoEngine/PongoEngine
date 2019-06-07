@@ -1,0 +1,155 @@
+{
+  "classes": {
+    "game.LameHuman": {
+      "extendedBy": [],
+      "name": "game.LameHuman",
+      "constructor": {
+        "name": "new",
+        "ret": 0,
+        "arguments": []
+      },
+      "variables": [
+        {
+          "name": "zach",
+          "type": 0
+        },
+        {
+          "name": "hammer",
+          "type": 0
+        },
+        {
+          "name": "robot",
+          "type": 0
+        },
+        {
+          "name": "cheese",
+          "type": 0
+        }
+      ],
+      "methods": [
+        {
+          "name": "run",
+          "ret": 0,
+          "arguments": []
+        },
+        {
+          "name": "run",
+          "ret": 0,
+          "arguments": []
+        }
+      ],
+      "superClass": "game.Human",
+      "isTyped": true
+    },
+    "game.Human": {
+      "extendedBy": [
+        "game.LameHuman",
+        "game.CoolHuman"
+      ],
+      "name": "game.Human",
+      "constructor": {
+        "name": "new",
+        "ret": 0,
+        "arguments": []
+      },
+      "variables": [
+        {
+          "name": "hammer",
+          "type": 0
+        },
+        {
+          "name": "robot",
+          "type": 0
+        },
+        {
+          "name": "cheese",
+          "type": 0
+        }
+      ],
+      "methods": [
+        {
+          "name": "run",
+          "ret": 0,
+          "arguments": []
+        }
+      ],
+      "superClass": null,
+      "isTyped": true
+    },
+    "game.Robot": {
+      "extendedBy": [],
+      "name": "game.Robot",
+      "constructor": {
+        "name": "new",
+        "ret": 0,
+        "arguments": []
+      },
+      "variables": [],
+      "methods": [
+        {
+          "name": "run",
+          "ret": 0,
+          "arguments": []
+        }
+      ],
+      "superClass": null,
+      "isTyped": true
+    },
+    "game.Component": {
+      "extendedBy": [
+        "game.Robot",
+        "game.Human"
+      ],
+      "name": "game.Component",
+      "constructor": null,
+      "variables": [],
+      "methods": [
+        {
+          "name": "run",
+          "ret": 0,
+          "arguments": []
+        }
+      ],
+      "superClass": null,
+      "isTyped": false
+    },
+    "game.CoolHuman": {
+      "extendedBy": [],
+      "name": "game.CoolHuman",
+      "constructor": {
+        "name": "new",
+        "ret": 0,
+        "arguments": []
+      },
+      "variables": [
+        {
+          "name": "hammer",
+          "type": 0
+        },
+        {
+          "name": "robot",
+          "type": 0
+        },
+        {
+          "name": "cheese",
+          "type": 0
+        }
+      ],
+      "methods": [
+        {
+          "name": "run",
+          "ret": 0,
+          "arguments": []
+        },
+        {
+          "name": "run",
+          "ret": 0,
+          "arguments": []
+        }
+      ],
+      "superClass": "game.Human",
+      "isTyped": true
+    }
+  },
+  "enums": {}
+}

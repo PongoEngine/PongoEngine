@@ -13,6 +13,7 @@ import engine.model.Model;
 using engine.model.TreeItem;
 import js.Browser.window as W;
 import haxe.Serializer;
+using engine.util.EngineStringTools;
 
 using StringTools;
 
@@ -110,6 +111,13 @@ class Update {
 				button.isActive = !button.isActive;
 			case TextInput(text, e):
 				text.value = untyped e.target.value;
+			case TypedTextInput(type, text, e):
+				switch type {
+					case TYPE(module, params): {
+						text.value = checkModule(module, untyped e.target.value);
+					}
+					case FUNC(vals):
+				}
 			case SelectWindow(window, updateDimensions, e):
 				e.stopPropagation();
 				window.isUpdatingWidth = updateDimensions;
@@ -130,6 +138,16 @@ class Update {
 				item.value = untyped e.target.value;
 		}
 		return true;
+	}
+
+	private static function checkModule(module :Module, text :String) : String
+	{
+		return switch module {
+			case Int: text.parseInt();
+			case Float: text.parseFloat();
+			case String: text;
+			case _: text;
+		}
 	}
 
 	private static function getWindow(windows :Array<Window>, id :WindowId) : Window
@@ -166,4 +184,12 @@ class Update {
 			case _: NoOp;
 		}
 	}
+}
+
+@:enum
+abstract Module(String) from String
+{
+	var String = "String";
+	var Float = "Float";
+	var Int = "Int";
 }

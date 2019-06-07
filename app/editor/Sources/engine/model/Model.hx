@@ -3,8 +3,10 @@ package engine.model;
 import perdita.model.Window;
 import perdita.model.Drawer;
 import perdita.model.AccordianItem;
+import perdita.model.Textfield;
 import perdita.model.util.UUID;
 import engine.model.TreeItem;
+import engine.model.TypedTextField;
 import nosey.TypingData;
 
 class Model 
@@ -17,6 +19,7 @@ class Model
 	public var activeKeys (default, null):Map<ActionKey, ActionKey>;
 	public var activeItem :ActiveItem;
 	public var typingData (default, null):TypingData;
+	public var textFields (default, null):Map<String, TypedTextField>;
 
 	public function new(typingData :TypingData):Void 
 	{
@@ -28,6 +31,7 @@ class Model
 		this.activeKeys = new Map<ActionKey, ActionKey>();
 		this.activeItem = None;
 		this.typingData = typingData;
+		this.textFields = new Map<String, TypedTextField>();
 	}
 
 	public static function clearKeys(model :Model) : Model

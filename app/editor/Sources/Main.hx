@@ -5,6 +5,8 @@ import engine.View.view;
 import js.Browser.window;
 import haxe.Unserializer;
 import nosey.TypingData;
+import haxe.crypto.BaseCode;
+import haxe.crypto.Base64;
 
 @:build(nosey.TypeWriter.build('../app/editor/Assets/', ['game'], [], true))
 class Main {
@@ -28,10 +30,11 @@ class Main {
 
 	public static function loadComponents(onData :TypingData -> Void) : Void
 	{
-		var http = new haxe.Http("./baseComponents.json");
+		var http = new haxe.Http("./baseComponents.data");
 
 		http.onData = function (data:String) {
-			onData(Unserializer.run(data));
+			var serializedData = BaseCode.decode(data, Base64.CHARS);
+			onData(Unserializer.run(serializedData));
 		}
 
 		http.onError = function (error) {
