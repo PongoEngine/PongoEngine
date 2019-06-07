@@ -10,3 +10,6 @@
 [submodule "lib/Kha"]
 	path = lib/Kha
 	url = https://github.com/Kode/Kha
+[submodule "lib/Nosey"]
+	path = lib/Nosey
+	url = https://github.com/PongoEngine/Nosey

@@ -5,7 +5,7 @@ import perdita.model.Drawer;
 import perdita.model.AccordianItem;
 import perdita.model.util.UUID;
 import engine.model.TreeItem;
-import typing.TypingData;
+import nosey.TypingData;
 
 class Model 
 {

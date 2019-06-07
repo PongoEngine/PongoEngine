@@ -9,7 +9,7 @@ import towser.RenderFunction;
 import engine.model.Model;
 import engine.model.TreeItem;
 import engine.update.GenMsg;
-using typing.TypingData;
+using nosey.TypingData;
 
 class View
 {

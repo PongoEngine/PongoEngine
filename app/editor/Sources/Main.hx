@@ -4,9 +4,9 @@ import engine.update.Update.update;
 import engine.View.view;
 import js.Browser.window;
 import haxe.Unserializer;
-import typing.TypingData;
+import nosey.TypingData;
 
-@:build(typing.TypeWriter.build('../app/editor/Assets/', ['game'], [], true))
+@:build(nosey.TypeWriter.build('../app/editor/Assets/', ['game'], [], true))
 class Main {
 	static function main() {
 		loadComponents(function(data) {

@@ -8,7 +8,7 @@ project.addParameter('--macro include("game", true)');
 project.addSources("lib/Towser/src");
 project.addSources('lib/Pongo/Sources');
 project.addSources('lib/Perdita/src/haxe');
-project.addSources('lib/Typer/src');
+project.addSources('lib/Nosey/src');
 project.addAssets("app/editor/Assets/**");
 project.addSources('app/editor/Sources');
 project.addSources('app/editor/Sources');
