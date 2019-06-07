@@ -3,59 +3,37 @@ package engine.model;
 import perdita.model.Window;
 import perdita.model.Drawer;
 import perdita.model.AccordianItem;
-import perdita.model.util.PointerPosition;
-
-import haxe.Serializer;
-import haxe.Unserializer;
+import perdita.model.util.UUID;
+import engine.model.TreeItem;
+import typing.TypingData;
 
 class Model 
 {
-	public var drawerLeft :Drawer;
-	public var activePoint :PointerPosition;
-	public var stretchableColumn :Drawer;
-	public var selectedFloater :Window;
-	public var floaters: Array<Window>;
-	public var accordianItems: Array<AccordianItem>;
-	public var lineItem :TreeItem;
-	public var activeKeys :Map<ActionKey, ActionKey>;
-	public var nextId :Int;
+	public var drawerLeft (default, null):Drawer;
+	public var windows (default, null): Array<Window>;
+	public var accordianItems (default, null): Array<AccordianItem>;
+	public var lineItem (default, null):TreeItem;
+	public var activeKeys (default, null):Map<ActionKey, ActionKey>;
+	public var activeItem :ActiveItem;
+	public var typingData (default, null):TypingData;
 
-	@:keep
-	function hxSerialize(s:Serializer) {
-		s.serialize(drawerLeft);
-		s.serialize(activePoint);
-		s.serialize(stretchableColumn);
-		s.serialize(selectedFloater);
-		s.serialize(floaters);
-		s.serialize(accordianItems);
-		s.serialize(lineItem);
-		s.serialize(activeKeys);
-		s.serialize(nextId);
-	}
-
-	@:keep
-	function hxUnserialize(u:Unserializer) {
-		drawerLeft = u.unserialize();
-		activePoint = u.unserialize();
-		stretchableColumn = u.unserialize();
-		selectedFloater = u.unserialize();
-		floaters = u.unserialize();
-		accordianItems = u.unserialize();
-		lineItem = u.unserialize();
-		activeKeys = u.unserialize();
-		nextId = u.unserialize();
-	}
-
-	public function new():Void 
+	public function new(typingData :TypingData):Void 
 	{
-		this.drawerLeft = new Drawer(true);
-		this.activePoint = new PointerPosition();
-		this.stretchableColumn = null;
-		this.nextId = 0;
-		this.lineItem = new TreeItem(true, this.nextId++);
+		this.drawerLeft = new Drawer(true, UUID.drawerId());
+		this.lineItem = new TreeItem(true, "", UUID.lineItemId());
 		this.accordianItems = [];
-		this.floaters = [new Window()];
-		this.selectedFloater = null;
+		this.windows = [new Window(UUID.windowId()), new Window(UUID.windowId())];
 		this.activeKeys = new Map<ActionKey, ActionKey>();
+		this.activeItem = None;
+		this.typingData = typingData;
+	}
+
+	public static function clearKeys(model :Model) : Model
+	{
+		var keys = model.activeKeys.keys();
+		for(k in keys) {
+			model.activeKeys.remove(k);
+		}
+		return model;
 	}
 }

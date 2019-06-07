@@ -1,41 +1,39 @@
 package engine.model;
 
+import perdita.model.util.UUID.LineItemId;
 import perdita.model.LineItem;
 import perdita.model.Textfield;
 
 class TreeItem extends LineItem
 {
 	public var content :TreeContent;
-	public var id :Int;
-	public var parentId :Int;
+	public var field :Textfield;
+	public var parentId :LineItemId;
 
-	public function new(isExpanded :Bool, id :Int) : Void
+	public function new(isExpanded :Bool, name :String, id :LineItemId) : Void
 	{
-		super(isExpanded);
+		super(isExpanded, id);
 		this.content = EMPTY;
-		this.id = id;
-		this.parentId = -1;
+		this.field = new Textfield("Entity Name", name);
+		this.parentId = new LineItemId("");
 	}
 
-	public static function getMatches(root :TreeItem, id :Int, ?matches :Array<TreeItem>) : Array<TreeItem>
+	public static function getItem(root :TreeItem, id :LineItemId) : TreeItem
 	{
-		if(matches == null) {
-			matches = [];
-		}
-
 		if(root.id == id) {
-			matches.push(root);
+			return root;
 		}
 
-		return switch root.content {
+		switch root.content {
 			case CHILDREN(children): {
 				for(c in children) {
-					getMatches(c, id, matches);
+					var item = getItem(c, id);
+					if(item != null) return item;
 				}
-				matches;
 			}
-			case _: matches;
+			case _:
 		}
+		return null;
 	}
 
 	public static function addChild(parent :TreeItem, child :TreeItem) : TreeItem
@@ -55,7 +53,7 @@ class TreeItem extends LineItem
 		switch parent.content {
 			case CHILDREN(children):
 				if(children.remove(child)) {
-					child.parentId = -1;
+					child.parentId = new LineItemId("");
 				}
 			case COMPONENT(text):
 			case EMPTY:

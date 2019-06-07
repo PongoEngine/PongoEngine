@@ -29,9 +29,20 @@ $nav-height: 50px;
 .line-item {
   user-select: none;
   white-space: nowrap;
+  padding: 2px;
 }
 
-.line-item > span {
+.line-item-text {
+  width: calc(100% - 64px);
+  margin-right: 4px;
+  overflow: hidden;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.line-item-button {
   cursor: pointer;
   margin: 1px;
   width: 24px;
@@ -41,6 +52,7 @@ $nav-height: 50px;
   display: inline-block;
   border-width: 1px;
   border-style: solid;
+  margin-top: 8px;
 }
 
 .models {
@@ -49,15 +61,22 @@ $nav-height: 50px;
   overflow-x: hidden;
 }
 
-.save-button {
-  border-width: 1px;
-  border-style: solid;
-  // padding: 10px;
-  line-height: 32px;
-  height: 32px;
-  padding: 0 10px;
-  margin: 6px;
-  display: inline-block;
-  cursor: pointer;
-  outline: none;
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+} 
+.group:after {
+  clear: both;
+}
+.group {
+  zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
 }

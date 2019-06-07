@@ -13,8 +13,8 @@ class View
 {
     public static function view(model:Model) : RenderFunction<Model, GenMsg>
 	{
-		var disableSelect = model.selectedFloater != null ? " disable-user-select" : "";
-		return div([class_("full-screen" + disableSelect), tabindex("-2"), onkeydown(GLOBAL_KEY_DOWN), onkeyup(GLOBAL_KEY_UP), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
+		// var disableSelect = model.activeItem != None ? " disable-user-select" : "";
+		return div([class_("full-screen"), tabindex("-2"), onkeydown(GLOBAL_KEY_DOWN), onkeyup(GLOBAL_KEY_UP), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
 			div([class_("nav-bar color-container-darker border-bottom")], [
 			]),
 			div([class_("main-content flex-row")], [
@@ -29,8 +29,10 @@ class View
 					])
 				])
 			]),
-			div([], [for (f in model.floaters) window(SelectWindow, f, [
-
+			div([], [for (f in model.windows) window(SelectWindow, f, [
+				div([class_("border-bottom color-container-darkest models")], [
+					roooots(model.lineItem)
+				])
 			])])
 		]);
 	}
@@ -43,9 +45,16 @@ class View
 			case COMPONENT(text_): [textfield(TextInput, text_)];
 		}
 
-		return lineItem(ToggleLineItem, item, div([class_("line-item")], [
-			span([class_("color-container-darker"), onclick(AddTreeItem.bind(item))], [text("+")]),
-			span([class_("color-container-darker"), onclick(DeleteTreeItem.bind(item))], [text("x")]),
-		]), c);
+		var lineView = div([class_("full-width")], [
+			div([class_("line-item group")], [
+				div([class_("float-left line-item-text")], [textfield(UpdateTreeItemText, item.field)]),
+				div([class_("float-left")], [
+					span([class_("color-container-darker line-item-button"), onclick(AddTreeItem.bind(item))], [text("+")]),
+					span([class_("color-container-darker line-item-button"), onclick(DeleteTreeItem.bind(item)),], [text("x")])
+				])
+			])
+		]);
+
+		return lineItem(ToggleLineItem, item, lineView, c);
 	}
 }

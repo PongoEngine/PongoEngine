@@ -1,6 +1,6 @@
 package engine.update;
 
-import haxe.Json;
+import perdita.model.Textfield;
 import js.Browser;
 import towser.Towser;
 using perdita.model.Window;
@@ -8,6 +8,7 @@ using perdita.model.Drawer;
 using perdita.model.AccordianItem;
 using perdita.model.util.PointerPosition;
 import engine.model.ActionKey;
+import perdita.model.util.UUID;
 import engine.model.Model;
 using engine.model.TreeItem;
 import js.Browser.window as W;
@@ -31,7 +32,7 @@ class Update {
 						e.preventDefault();
 					}
 					case ResetState: {
-						towser.model = new Model();
+						// towser.model = new Model();
 					}
 					case NoOp:
 				}
@@ -50,57 +51,92 @@ class Update {
 					column.open(300);
 				}
 			case GlobalMove(e):
-				model.activePoint.update(e.pageX, e.pageY);
-				if(model.selectedFloater != null) {
-					if(model.selectedFloater.isUpdatingWidth) {
-						model.selectedFloater.resizeTo(model.activePoint.x, model.activePoint.y);
+				switch model.activeItem {
+					case Drawer(id, position): {
+						if(id == model.drawerLeft.id) {
+							position.update(e.pageX, e.pageY);
+							model.drawerLeft.stretchBy(position.x_changed);
+						}
 					}
-					else {
-						model.selectedFloater.moveBy(model.activePoint.x_changed, model.activePoint.y_changed);
+					case Window(id, position): {
+						position.update(e.pageX, e.pageY);
+						var selectedWindow = getWindow(model.windows, id);
+						if(selectedWindow != null) {
+							if(selectedWindow.isUpdatingWidth) {
+								selectedWindow.resizeTo(position.x, position.y);
+							}
+							else {
+								selectedWindow.moveBy(position.x_changed, position.y_changed);
+							}
+						}
 					}
-				}
-				if(model.stretchableColumn != null) {
-					model.stretchableColumn.stretchBy(model.activePoint.x_changed);
+					case None:
 				}
 			case GlobalUp(e):
-				if(model.selectedFloater != null) {
-					model.selectedFloater.isUpdatingWidth = false;
-					model.selectedFloater = null;
+				switch model.activeItem {
+					case Drawer(id, position): {
+						position.update(e.pageX, e.pageY);
+						if(id == model.drawerLeft.id) {
+							model.drawerLeft.checkWidth();
+							model.drawerLeft.isActive = false;
+							model.activeItem = None;
+						}
+					}
+					case Window(id, position): {
+						var selectedWindow = getWindow(model.windows, id);
+						if(selectedWindow != null) {
+							selectedWindow.isUpdatingWidth = false;
+							model.activeItem = None;
+						}
+					}
+					case None:
 				}
-				model.activePoint.update(e.pageX, e.pageY);
-				if(model.stretchableColumn != null) {
-					model.stretchableColumn.checkWidth();
-					model.stretchableColumn.isActive = false;
-					model.stretchableColumn = null;
-				}
+						
+				
 			case GlobalDown(e):
-				model.activePoint.update(e.pageX, e.pageY);
+				switch model.activeItem {
+					case Drawer(id, position): position.update(e.pageX, e.pageY);
+					case Window(id, position): position.update(e.pageX, e.pageY);
+					case None:
+				}
+				
 			case StretchColumn(column,e):
 				column.isActive = true;
-				model.stretchableColumn = column;
+				model.activeItem = Drawer(column.id, new PointerPosition(e.pageX, e.pageY));
 			case ToggleButton(button):
 				button.isActive = !button.isActive;
 			case TextInput(text, e):
 				text.value = untyped e.target.value;
 			case SelectWindow(window, updateDimensions, e):
 				e.stopPropagation();
-				model.activePoint.update(e.pageX, e.pageY);
-				model.selectedFloater = window;
-				model.selectedFloater.isUpdatingWidth = updateDimensions;
-				model.floaters.remove(window);
-				model.floaters.push(window);
+				window.isUpdatingWidth = updateDimensions;
+				model.windows.remove(window);
+				model.windows.push(window);
+				model.activeItem = Window(window.id, new PointerPosition(e.pageX, e.pageY));
 			case ToggleLineItem(item, _):
 				item.isExpanded = !item.isExpanded;
 			case AddTreeItem(item, e):
-				var newItem = new TreeItem(true, model.nextId++);
+				var newItem = new TreeItem(true, "", UUID.lineItemId());
 				item.addChild(newItem);
 			case DeleteTreeItem(item, e):
-				var parent = TreeItem.getMatches(model.lineItem, item.parentId)[0];
+				var parent = TreeItem.getItem(model.lineItem, item.parentId);
 				if(parent != null) {
 					parent.removeChild(item);
 				}
+			case UpdateTreeItemText(item, e):
+				item.value = untyped e.target.value;
 		}
 		return true;
+	}
+
+	private static function getWindow(windows :Array<Window>, id :WindowId) : Window
+	{
+		for(w in windows) {
+			if(w.id == id) {
+				return w;
+			}
+		}
+		return null;
 	}
 
 	public static function handleKey(key :ActionKey, model:Model, isDown :Bool) : Void
@@ -123,24 +159,11 @@ class Update {
 		return switch [lastKey, keys.exists(Command)] {
 			case [S, true]: SaveState;
 			case [R, true]: RefreshBrowser;
-			case [J, true]: ResetState;
+			case [J, true]: {
+				trace(keys);
+				ResetState;
+			};
 			case _: NoOp;
-		}
-	}
-
-	public static function download(filename :String, text :String) : Void
-	{
-		var pom = Browser.document.createElement('a');
-		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + text.urlEncode());
-		pom.setAttribute('download', filename);
-
-		if (Browser.document.createEvent != null) {
-			var event = Browser.document.createEvent('MouseEvents');
-			event.initEvent('click', true, true);
-			pom.dispatchEvent(event);
-		}
-		else {
-			pom.click();
 		}
 	}
 }

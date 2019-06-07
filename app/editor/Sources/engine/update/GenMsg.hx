@@ -27,4 +27,5 @@ enum GenMsg {
 	SelectWindow(data:Window, updateDimensions :Bool, e:MouseEvent);
 	AddTreeItem(item :TreeItem, e :MouseEvent);
 	DeleteTreeItem(item :TreeItem, e :MouseEvent);
+	UpdateTreeItemText(field :Textfield, e :InputEvent);
 }

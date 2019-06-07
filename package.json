@@ -22,6 +22,7 @@
     "serve": "node lib/Kha/make --server"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.12.3"
+    "parcel-bundler": "^1.12.3",
+    "terser": "^4.0.0"
   }
 }
