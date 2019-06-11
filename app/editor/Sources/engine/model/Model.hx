@@ -27,7 +27,9 @@ class Model
 		this.drawerLeft = new Drawer(true, UUID.drawerId());
 		this.lineItem = new TreeItem(true, "", UUID.lineItemId());
 		this.accordianItems = [];
-		this.windows = [new Window(UUID.windowId())];
+		this.windows = [
+			new Window(UUID.windowId(), 0)
+		];
 		this.activeKeys = new Map<ActionKey, ActionKey>();
 		this.activeItem = None;
 		this.typingData = typingData;

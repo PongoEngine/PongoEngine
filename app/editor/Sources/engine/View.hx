@@ -19,8 +19,8 @@ class View
 {
     public static function view(model:Model) : RenderFunction<Model, GenMsg>
 	{
-		var disableSelect = model.activeItem != None ? " disable-user-select" : "";
-		return div([class_("full-screen" + disableSelect), tabindex("-2"), onkeydown(GLOBAL_KEY_DOWN), onkeyup(GLOBAL_KEY_UP), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
+		// var disableSelect = model.activeItem != None ? " disable-user-select" : "";
+		return div([class_("full-screen"), tabindex("-2"), onkeydown(GLOBAL_KEY_DOWN), onkeyup(GLOBAL_KEY_UP), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
 			div([class_("nav-bar color-container-darker border-bottom")], [
 			]),
 			div([class_("main-content flex-row")], [
@@ -36,20 +36,20 @@ class View
 				])
 			]),
 			div([], [for (f in model.windows) window(SelectWindow, f, [
-				showLameHuman(model)
+				// showLameHuman(model)
 			])])
 		]);
 	}
 
-	public static function showLameHuman(model :Model) : RenderFunction<Model, GenMsg>
-	{
-		var lameHuman :EditorClass = model.typingData.getClass("game.LameHuman");
-		return return div([], [
-			div([], lameHuman.variables.map(function(v) {
-				return textfield(TypedTextInput.bind(v.type), getField(v, model));
-			}))
-		]);
-	}
+	// public static function showLameHuman(model :Model) : RenderFunction<Model, GenMsg>
+	// {
+	// 	var lameHuman :EditorClass = model.typingData.getClass("game.Sandwich");
+	// 	return return div([], [
+	// 		div([], lameHuman.variables.map(function(v) {
+	// 			return textfield(TypedTextInput.bind(v.type), getField(v, model));
+	// 		}))
+	// 	]);
+	// }
 
 	public static function getField(variable :DVariable, model :Model) : Textfield
 	{

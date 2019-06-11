@@ -8,7 +8,7 @@ import nosey.TypingData;
 import haxe.crypto.BaseCode;
 import haxe.crypto.Base64;
 
-@:build(nosey.TypeWriter.build('../app/editor/Assets/', ['game'], [], true))
+// @:build(nosey.TypeWriter.build('../app/editor/Assets/', ['game'], [], true))
 class Main {
 	static function main() {
 		loadComponents(function(data) {
@@ -17,6 +17,7 @@ class Main {
 				? {
 					try{
 						Unserializer.run(item);
+						throw "err";
 					}
 					catch(e :Dynamic) {
 						new Model(data);
@@ -25,6 +26,7 @@ class Main {
 				: new Model(data);
 
 			new Towser("app", update, view, Model.clearKeys(model));
+
 		});
 	}
 
@@ -34,7 +36,8 @@ class Main {
 
 		http.onData = function (data:String) {
 			var serializedData = BaseCode.decode(data, Base64.CHARS);
-			onData(Unserializer.run(serializedData));
+			var unserializedData = Unserializer.run(serializedData);
+			onData(unserializedData);
 		}
 
 		http.onError = function (error) {
