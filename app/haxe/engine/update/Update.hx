@@ -125,10 +125,6 @@ class Update {
 					}
 				}
 				window.zIndex = model.windows.length-1;
-				for(w in model.windows) {
-					trace(w.zIndex);
-				}
-				trace("");
 				model.activeItem = Window(window.id, new PointerPosition(e.pageX, e.pageY));
 			case ToggleLineItem(item, _):
 				item.isExpanded = !item.isExpanded;
