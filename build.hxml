@@ -1,0 +1,7 @@
+
+-cp lib/Towser/src
+-cp lib/Perdita/src/haxe
+-cp app/editor
+-cp lib/Nosey/src
+-js .cache/haxe.js
+-main Main 

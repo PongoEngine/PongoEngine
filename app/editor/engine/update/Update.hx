@@ -33,10 +33,6 @@ class Update {
 						e.preventDefault();
 					}
 					case ResetState: {
-						Main.loadComponents(function(data) {
-							towser.model = new Model(data);
-							towser.render();
-						});
 					}
 					case NoOp:
 				}

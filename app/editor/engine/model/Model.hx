@@ -18,10 +18,9 @@ class Model
 	public var lineItem (default, null):TreeItem;
 	public var activeKeys (default, null):Map<ActionKey, ActionKey>;
 	public var activeItem :ActiveItem;
-	public var typingData (default, null):TypingData;
 	public var textFields (default, null):Map<String, TypedTextField>;
 
-	public function new(typingData :TypingData):Void 
+	public function new():Void 
 	{
 		this.baseKey = "cool";
 		this.drawerLeft = new Drawer(true, UUID.drawerId());
@@ -32,7 +31,6 @@ class Model
 		];
 		this.activeKeys = new Map<ActionKey, ActionKey>();
 		this.activeItem = None;
-		this.typingData = typingData;
 		this.textFields = new Map<String, TypedTextField>();
 	}
 

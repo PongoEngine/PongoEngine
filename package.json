@@ -1,5 +1,5 @@
 {
-  "name": "PongoEngine",
+  "name": "pongo-engine",
   "version": "1.0.0",
   "description": "Pongo Game Engine",
   "main": "index.js",
@@ -7,22 +7,14 @@
   "author": "Jeremy <cream@sourcre.am>",
   "license": "MIT",
   "dependencies": {
-    "browser-sync": "^2.26.5",
-    "browserify": "^16.2.3",
-    "fs-extra": "^7.0.1",
-    "gulp": "^4.0.2",
-    "gulp-sass": "^4.0.2",
     "incremental-dom": "^0.6.0",
-    "node-sass": "^4.12.0",
-    "snabbdom": "^0.7.3"
+    "parcel-plugin-haxe": "file:parcel-plugin-haxe/"
   },
   "scripts": {
-    "start": "node index.js",
-    "build": "node lib/Kha/make html5",
-    "serve": "node lib/Kha/make --server"
+    "start": "parcel -p 4321 watch build/index.html"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.3",
-    "terser": "^4.0.0"
+    "sass": "^1.21.0"
   }
 }
