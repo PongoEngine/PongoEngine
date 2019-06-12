@@ -4347,11 +4347,9 @@ parcel-bundler@^1.12.3:
     v8-compile-cache "^2.0.0"
     ws "^5.1.1"
 
-"parcel-plugin-haxe@file:parcel-plugin-haxe":
-  version "1.0.1"
-
-"parcel-plugin-haxe@file:parcel-plugin-haxe/":
-  version "1.0.1"
+"parcel-plugin-haxe@https://github.com/PongoEngine/parcel-plugin-haxe":
+  version "1.0.0"
+  resolved "https://github.com/PongoEngine/parcel-plugin-haxe#ce5205a84ce61cc521c9a942dcfa28d949a5cb4a"
 
 parse-asn1@^5.0.0:
   version "5.1.4"
