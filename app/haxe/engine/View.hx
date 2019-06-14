@@ -1,8 +1,6 @@
 package engine;
 
 import engine.model.TypedTextField;
-import nosey.EditorClass;
-import towser.html.Lazy;
 import perdita.Perdita.*;
 import perdita.model.Textfield;
 import towser.html.Attributes.*;
@@ -12,7 +10,6 @@ import towser.RenderFunction;
 import engine.model.Model;
 import engine.model.TreeItem;
 import engine.update.GenMsg;
-using nosey.TypingData;
 import nosey.definition.DVariable;
 
 class View

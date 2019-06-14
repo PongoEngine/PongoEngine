@@ -4,17 +4,18 @@
   "description": "Pongo Game Engine",
   "main": "index.js",
   "repository": "https://github.com/PongoEngine/PongoEngine.git",
-  "author": "Jeremy <cream@sourcre.am>",
+  "author": "Jeremy <jeremy@sourcre.am>",
   "license": "MIT",
   "dependencies": {
-    "incremental-dom": "^0.6.0",
-    "parcel-plugin-haxe": "https://github.com/PongoEngine/parcel-plugin-haxe"
+    "incremental-dom": "^0.6.0"
   },
   "scripts": {
-    "start": "parcel -p 4321 watch app/index.html"
+    "start": "parcel -p 4321 watch app/index.html",
+    "build": "parcel build app/index.html -d dist --no-source-maps --public-url ."
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.3",
+    "parcel-plugin-haxe": "^0.0.1",
     "sass": "^1.21.0"
   }
 }
