@@ -1,6 +1,6 @@
 package engine.update;
 
-import perdita.model.Textfield;
+import js.lib.Promise;
 import js.Browser;
 import towser.Towser;
 using perdita.model.Window;
@@ -15,11 +15,20 @@ import js.Browser.window as W;
 import haxe.Serializer;
 using engine.util.EngineStringTools;
 
-using StringTools;
-
 class Update {
 	public static function update(towser: Towser<Model, GenMsg>, msg:GenMsg, model:Model):Bool {
 		switch msg {
+			case OnFileLoad(e): {
+				var file = untyped e.target.files[0]; 
+				trace(file);
+
+				var filePromise :Promise<Dynamic> = untyped carlo.fileInfo(file);
+				filePromise.then(function(data) {
+					return untyped compileGame(data.path);
+				}).then(function(val) {
+					trace(val);
+				});
+			}
 			case GLOBAL_KEY_DOWN(e):
 				handleKey(e.key, model, true);
 				switch operation(e.key, model.activeKeys) {

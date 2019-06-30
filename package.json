@@ -10,10 +10,11 @@
     "incremental-dom": "^0.6.0"
   },
   "scripts": {
-    "start": "parcel -p 4321 watch app/index.html",
+    "start": "node index.js",
     "build": "parcel build app/index.html -d dist --no-source-maps --public-url ."
   },
   "devDependencies": {
+    "carlo": "^0.9.46",
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-haxe": "^0.0.1",
     "sass": "^1.21.0"

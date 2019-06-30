@@ -21,6 +21,7 @@ enum GenMsg {
 	ToggleColumn(column :Drawer, e :MouseEvent);
 	ToggleButton(button :Toggle);
 	TextInput(data :Textfield, str :InputEvent);
+	OnFileLoad(e :InputEvent);
 	TypedTextInput(type :DType, data :Textfield, str :InputEvent);
 	GlobalMove(e :MouseEvent);
 	GlobalUp(e :MouseEvent);

@@ -1,8 +1,6 @@
 package engine;
 
-import engine.model.TypedTextField;
 import perdita.Perdita.*;
-import perdita.model.Textfield;
 import towser.html.Attributes.*;
 import towser.html.Events.*;
 import towser.html.Html.*;
@@ -10,15 +8,22 @@ import towser.RenderFunction;
 import engine.model.Model;
 import engine.model.TreeItem;
 import engine.update.GenMsg;
-import nosey.definition.DVariable;
 
 class View
 {
     public static function view(model:Model) : RenderFunction<Model, GenMsg>
 	{
-		// var disableSelect = model.activeItem != None ? " disable-user-select" : "";
-		return div([class_("full-screen"), tabindex("-2"), onkeydown(GLOBAL_KEY_DOWN), onkeyup(GLOBAL_KEY_UP), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
+		var disableSelect = model.activeItem != None ? " disable-user-select" : "";
+		return div([class_("full-screen" + disableSelect), tabindex("-2"), onkeydown(GLOBAL_KEY_DOWN), onkeyup(GLOBAL_KEY_UP), onmousedown(GlobalDown), onmouseup(GlobalUp), onmousemove(GlobalMove)], [
 			div([class_("nav-bar color-container-darker border-bottom")], [
+				label([class_("nav-button")], [
+					text("save"),
+					input([class_("nav-hidden"), type("file")])
+				]),
+				label([class_("nav-button")], [
+					text("load"),
+					input([class_("nav-hidden"), type("file"), oninput(OnFileLoad), accept(".js")])
+				])
 			]),
 			div([class_("main-content flex-row")], [
 				drawer(StretchColumn, ToggleColumn, model.drawerLeft, [
@@ -33,32 +38,8 @@ class View
 				])
 			]),
 			div([], [for (f in model.windows) window(SelectWindow, f, [
-				// showLameHuman(model)
 			])])
 		]);
-	}
-
-	// public static function showLameHuman(model :Model) : RenderFunction<Model, GenMsg>
-	// {
-	// 	var lameHuman :EditorClass = model.typingData.getClass("game.Sandwich");
-	// 	return return div([], [
-	// 		div([], lameHuman.variables.map(function(v) {
-	// 			return textfield(TypedTextInput.bind(v.type), getField(v, model));
-	// 		}))
-	// 	]);
-	// }
-
-	public static function getField(variable :DVariable, model :Model) : Textfield
-	{
-		var id = "comp_" + variable.name;
-		var type = switch variable.type {
-			case TYPE(module, params): module;
-			case FUNC(vals): "Function";
-		}
-		if(!model.textFields.exists(id)) {
-			model.textFields.set(id, new TypedTextField(variable.name + " : " + type, "", true, variable.type));
-		}
-		return model.textFields.get(id);
 	}
 
 	public static function roooots(item:TreeItem) : RenderFunction<Model, GenMsg>

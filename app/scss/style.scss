@@ -34,6 +34,7 @@ $nav-height: 50px;
 
 .line-item-text {
   width: calc(100% - 64px);
+  min-width: 200px;
   margin-right: 4px;
   overflow: hidden;
 }
@@ -79,4 +80,21 @@ $nav-height: 50px;
 
 .float-right {
   float: right;
+}
+
+.nav-button {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 4px;
+  user-select: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+.nav-button:active {
+  background-color: #ccc;
+  color: #333;
+}
+.nav-hidden {
+  display: none;
 }
