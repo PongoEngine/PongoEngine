@@ -20,8 +20,6 @@ class Update {
 		switch msg {
 			case OnFileLoad(e): {
 				var file = untyped e.target.files[0]; 
-				trace(file);
-
 				var filePromise :Promise<Dynamic> = untyped carlo.fileInfo(file);
 				filePromise.then(function(data) {
 					return untyped compileGame(data.path);
@@ -117,13 +115,6 @@ class Update {
 			case TextInput(text, e):
 				text.value = untyped e.target.value;
 			case TypedTextInput(type, text, e):
-				switch type {
-					case TYPE(module, params): {
-						text.isValid = checkModule(module, untyped e.target.value); 
-						text.value = untyped e.target.value;
-					}
-					case FUNC(vals):
-				}
 			case SelectWindow(window, updateDimensions, e):
 				e.stopPropagation();
 				window.isUpdatingWidth = updateDimensions;

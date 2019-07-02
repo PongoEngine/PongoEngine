@@ -10,7 +10,6 @@ using perdita.model.Toggle;
 using perdita.model.AccordianItem;
 using perdita.model.LineItem;
 import engine.model.TreeItem;
-import nosey.definition.DType;
 
 enum GenMsg {
 	GLOBAL_KEY_DOWN(e :KeyboardEvent);
@@ -22,7 +21,7 @@ enum GenMsg {
 	ToggleButton(button :Toggle);
 	TextInput(data :Textfield, str :InputEvent);
 	OnFileLoad(e :InputEvent);
-	TypedTextInput(type :DType, data :Textfield, str :InputEvent);
+	TypedTextInput(type :Dynamic, data :Textfield, str :InputEvent);
 	GlobalMove(e :MouseEvent);
 	GlobalUp(e :MouseEvent);
 	GlobalDown(e :MouseEvent);

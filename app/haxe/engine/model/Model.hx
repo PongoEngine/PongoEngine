@@ -7,7 +7,6 @@ import perdita.model.Textfield;
 import perdita.model.util.UUID;
 import engine.model.TreeItem;
 import engine.model.TypedTextField;
-import nosey.TypingData;
 
 class Model 
 {
